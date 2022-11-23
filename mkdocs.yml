@@ -1,11 +1,3 @@
 site_name: Hacking Notes
 theme:
   name: material
-  custom_dir: 'theme'
-  palette:
-    primary: 'green'
-    accent: 'light green'
-
-extra_css:
-  - stylesheets/dark_theme.css
-  - stylesheets/codehilite.css
