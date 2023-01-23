@@ -1,2 +1,0 @@
-# Recon and Information Gathering
-

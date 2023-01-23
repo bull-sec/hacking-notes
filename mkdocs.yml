@@ -1,9 +1,0 @@
-site_name: Hacking Notes
-theme:
-  name: readthedocs
-  highlightjs: true
-  hljs_languages:
-    - python
-    - javascript
-    - bash
-    - powershell
