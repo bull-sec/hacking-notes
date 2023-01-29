@@ -1,11 +1,4 @@
----
-layout: post
-title: "Cheatsheets: Golden Ticket"
-date: 2022-08-10 23:32 +0100
-tags: pentesting windows kerberos kali cheatsheet impacket
-categories: [Cheatsheets, Windows]
-published: false
----
+# Golden Tickets
 
 ![](/assets/img/2022-10-09-02-14-12.png)
 

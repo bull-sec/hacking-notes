@@ -1,11 +1,4 @@
----
-layout: post
-title: "Cheatsheets: File Transfers 101"
-date: 2022-07-30 23:32 +0100
-tags: pentesting windows linux kali cheatsheet
-categories: [Cheatsheets]
-published: true
----
+# File Transfers 101
 
 There is more than one way to skin a cat, and there is more than one way to transfer a file.
 

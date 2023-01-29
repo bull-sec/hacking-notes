@@ -1,11 +1,4 @@
----
-layout: post
-title: "Cheatsheets: BloodHound"
-date: 2022-07-30 23:32 +0100
-tags: pentesting windows linux kali cheatsheet
-categories: [Cheatsheets, Windows]
-published: false
----
+# BloodHound
 
 BloodHound is a tool for visualising and analyzing Active Directory networks so that you can better identify misconfigurations and paths which would allow you to take full control of the Domain Controller (which is the ultimate goal in any Active Directory engagement)
 

@@ -1,11 +1,4 @@
----
-layout: post
-title: "Cheatsheet: Auth Bypass Headers"
-date: 2022-08-07 11:15 +0100
-categories: [Cheatsheets]
-tags: bugbounty web hacking cheatsheet
-published: true
----
+# Auth Bypass Headers"
 
 Adapted from this tweet:
 

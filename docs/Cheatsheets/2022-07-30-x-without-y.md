@@ -1,11 +1,4 @@
----
-layout: post
-title: "Cheatsheet: X Without Y"
-date: 2022-07-30 23:31 +0100
-tags: pentesting windows linux kali cheatsheet
-categories: [Cheatsheets]
-published: true
----
+# X Without Y (Living off the Land)
 
 Inspired by [Staaldraad's Post on the Matter](https://staaldraad.github.io/2017/12/20/netstat-without-netstat/)
 
