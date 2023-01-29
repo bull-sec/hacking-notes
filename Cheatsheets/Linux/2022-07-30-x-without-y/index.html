@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>X Without Y (Living off the Land) - Hacking Notes</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "X Without Y (Living off the Land)";
+        var mkdocs_page_input_path = "Cheatsheets/Linux/2022-07-30-x-without-y.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/javascript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/powershell.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Hacking Notes
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Welcome to MkDocs</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cheatsheets</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">General</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/2022-07-30-file-transfers-101/">File Transfers 101</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/2022-07-30-pivot-101/">Pivoting & Lateral Movement</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/2022-08-07-auth-bypass-headers/">Auth Bypass Headers"</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/2022-10-04-pentesting-email-servers/">Email Pentesting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/Kubernetes_Pentesting/">Pentesting Kubernetes</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/cheatsheet_js/">Commands</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/hydra_cheat_sheet/">Hydra Cheat Sheet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/msfvenom_cheatsheet/">MSFVenom Cheatsheet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../General/splunk_cheat_sheet/">Splunk Cheatsheet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Linux</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">X Without Y (Living off the Land)</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#arp-without-arp">ARP without ARP</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#netstat-without-netstat">Netstat without Netstat</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ping-without-ping">Ping without Ping</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ls-without-ls">ls without ls</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../Powershell_Empire/">Powershell Empire</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../linux/">Linux 101</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Windows</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Windows/101_windows/">Windows Privilege Escalation 101</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Windows/2022-07-09-impacket/">Impacket Toolset</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Windows/2022-07-10-bloodhound/">BloodHound</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Windows/2022-08-10-golden-ticket/">Golden Tickets</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Windows/2023-01-15-101_icalcs/">ICACLs 101</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Recon</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Recon/mapping/">Application Mapping</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Recon/recon/">Recon and Information Gathering</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Web</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Web/web_hacking/">Web Application Hacking</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Windows</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Windows/PowerShell/">PowerShell</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Windows/windows_101/">Windows 101</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Hacking Notes</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Cheatsheets &raquo;</li>
+          <li>Linux &raquo;</li>
+      <li>X Without Y (Living off the Land)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="x-without-y-living-off-the-land">X Without Y (Living off the Land)</h1>
+<p>Inspired by <a href="https://staaldraad.github.io/2017/12/20/netstat-without-netstat/">Staaldraad's Post on the Matter</a></p>
+<p>Run into situations like this quite often when testing container based systems so thought it was worth starting to compile them all into one document for reference purposes.</p>
+<h2 id="arp-without-arp">ARP without ARP</h2>
+<pre><code class="language-bash">cat /proc/net/arp
+ip neigh
+</code></pre>
+<h2 id="netstat-without-netstat">Netstat without Netstat</h2>
+<p>Staaldraad's AWK script:</p>
+<pre><code class="language-bash">awk'function hextodec(str,ret,n,i,k,c){
+    ret = 0
+    n = length(str)
+    for (i = 1; i &lt;= n; i++) {
+        c = tolower(substr(str, i, 1))
+        k = index(&quot;123456789abcdef&quot;, c)
+        ret = ret * 16 + k
+    }
+    return ret
+}
+function getIP(str,ret){
+    ret=hextodec(substr(str,index(str,&quot;:&quot;)-2,2)); 
+    for (i=5; i&gt;0; i-=2) {
+        ret = ret&quot;.&quot;hextodec(substr(str,i,2))
+    }
+    ret = ret&quot;:&quot;hextodec(substr(str,index(str,&quot;:&quot;)+1,4))
+    return ret
+}
+NR &gt; 1 \{\{if(NR==2)print &quot;Local - Remote&quot;;local=getIP($2);remote=getIP($3)}{print local&quot; - &quot;remote}}' /proc/net/tcp
+</code></pre>
+<p>Remove the backslashes before the if statement after <code>NR &gt; 1</code> to get it to work.</p>
+<p>The above presumes <code>awk</code> is installed, if it's not you're SOL.</p>
+<h2 id="ping-without-ping">Ping without Ping</h2>
+<p>Two cases for this.</p>
+<ul>
+<li>1) We don't have <code>ping</code></li>
+<li>2) We do have ping but ICMP is blocked</li>
+</ul>
+<p>We can't get around Case #2 but we can get around Case #1.</p>
+<pre><code class="language-bash">telnet ip.ad.dre.ss 80
+nc -znv ip.ad.dre.ss port
+</code></pre>
+<h2 id="ls-without-ls">ls without ls</h2>
+<pre><code class="language-bash">echo *
+echo */*
+for i in *; do echo $i; done
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../General/splunk_cheat_sheet/" class="btn btn-neutral float-left" title="Splunk Cheatsheet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Powershell_Empire/" class="btn btn-neutral float-right" title="Powershell Empire">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../General/splunk_cheat_sheet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Powershell_Empire/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
