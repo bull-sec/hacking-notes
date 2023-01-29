@@ -174,7 +174,7 @@
 <h2 id="standoutmost-useful-tools">Standout/Most Useful Tools</h2>
 <ul>
 <li><code>smbserver.py</code> - Does what it says on the tin. Gives you a quick and dirty SMB server that you can use for file transfers or for getting a service or user to authenticate against.</li>
-<li><code>GetUserSPNs.py</code> - a.k.a Kerberoast. If you have a username/password combination for a user and Kerberos is open on the host then this is 100% worth a shot. If it's successful (i.e. there is <a href="">Service Principal Name</a> attached to account) the it'll return a <code>Service Ticket</code> which hopefully can be cracked a give you the password for whatever service account is attached.</li>
+<li><code>GetUserSPNs.py</code> - a.k.a Kerberoast. If you have a username/password combination for a user and Kerberos is open on the host then this is 100% worth a shot. If it's successful (i.e. there is <a href="https://learn.microsoft.com/en-us/windows/win32/ad/service-principal-names">Service Principal Name</a> attached to account) the it'll return a <code>Service Ticket</code> which hopefully can be cracked a give you the password for whatever service account is attached.</li>
 <li>Any of the <code>Remote Execution</code> tools, but specifically <code>psexec.py</code> which is an awesome little tool for running remote commands on a target</li>
 <li><code>mimikatz.py</code> - mini RPC server for mimikatz which drops you into a shell on the target that lets you run mimikatz commands</li>
 </ul>
