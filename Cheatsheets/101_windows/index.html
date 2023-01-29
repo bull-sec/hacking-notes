@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Linux 101 - Hacking Notes</title>
+    <title>Windows Privilege Escalation 101 - Hacking Notes</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Linux 101";
-        var mkdocs_page_input_path = "Cheatsheets/linux.md";
+        var mkdocs_page_name = "Windows Privilege Escalation 101";
+        var mkdocs_page_input_path = "Cheatsheets/101_windows.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -50,7 +50,25 @@
               </ul>
               <p class="caption"><span class="caption-text">Cheatsheets</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../101_windows/">Windows Privilege Escalation 101</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Windows Privilege Escalation 101</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#user-accounts">User Accounts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#service-accounts">Service Accounts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#groups">Groups</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#regular-groups">Regular Groups</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psuedo-groups">Psuedo Groups</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#acls-aces">ACLs &amp; ACEs</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../2022-07-09-impacket/">2022 07 09 impacket</a>
                   </li>
@@ -78,9 +96,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../hydra_cheat_sheet/">Hydra Cheat Sheet</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux 101</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../linux/">Linux 101</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../msfvenom_cheatsheet/">MSFVenom Cheatsheet</a>
                   </li>
@@ -121,7 +137,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Cheatsheets &raquo;</li>
-      <li>Linux 101</li>
+      <li>Windows Privilege Escalation 101</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -130,22 +146,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="linux-101">Linux 101</h1>
-<pre><code class="language-bash">#!/bin/bash
-
-my_variable=$1
-
-echo $1
+                <h1 id="windows-privilege-escalation-101">Windows Privilege Escalation 101</h1>
+<h2 id="user-accounts">User Accounts</h2>
+<p>These are the basic account(s) that you would use to log into a Windows machine.</p>
+<p>They are a collection of settings/preferences bound to a unique identity. i.e. the username and the files linked to that account along with other preferences such as installed applications and group membership(s), all the various things that could be associated with a user account.</p>
+<p>The local "Administrator" account is created by default during the installation process. It is not directly available to log in, similar to the <code>root</code> account on modern Linux systems, with the difference being that it can be activated using <code>net user administrator /active:yes</code> and it will become an account that appears on the login screen.</p>
+<p>Depending on the version of Windows that is running there may be several other default User accounts such as "Guest".</p>
+<h2 id="service-accounts">Service Accounts</h2>
+<p>Used to run services (duh), services are programs that are being ran either constantly (in the case of web servers and FTP applications) or on a scheduled basis by a dedicated account with permissions set up specifically for that account. So in the case of the <code>NT AUTHORITY\IUSR</code> account which is used to control the IIS web service, it has specific permissions which allow it to manage the web server and all of it's associated functions. </p>
+<p>They cannot be used to log in to Windows directly. But they are capable of granting a "user" shell, which will allow for access to the system but with generally limited capabilites and permissions.</p>
+<p>The <code>NT AUTHORITY\SYSTEM</code> account is a default service account created during installation which has the highest privileges of any local account on Windows. It is the Windows equivalent of the "root" account and has <em>full</em> control over any application or user account on the system. In some instances it will even be a trusted account on other machines in the same network allowing for lateral movement.</p>
+<p>There are other default service accounts that are created during the installation process, such as NETWORK SERVICE and LOCAL SERVICE, and the aforementioned IUSR.</p>
+<h2 id="groups">Groups</h2>
+<p>User accounts can belong to multiple groups, and groups can have multiple users (same as Linux). Not much else to explain here, just bear in mind that there are LOTS of groups on Windows systems, and especially when it comes to AD/Domain controllers you're going to have to get your reference sheets out and run things like <code>BloodHound</code> to map all of the interactions between the groups.</p>
+<p>Groups allow for easier access control configuration by allowing multiple users the same level of access to a resource. We could created a group called "Tech_Admins" and give them access to restart/modify specific services and applications to allow them to perform maintenance or upgrades. </p>
+<p>There are two types of groups:</p>
+<h3 id="regular-groups"><em>Regular Groups</em></h3>
+<p>These groups have a set list of members and are created by the domain or system Administrator(s), with the exception of the default groups such as "Users" which contain ALL regular (non-service) users of a system.</p>
+<h3 id="psuedo-groups"><em>Psuedo Groups</em></h3>
+<p>These groups have a dynamic list of users that can change based on certain interactions, i.e. the "Authenticated Users" group contains a list of members who are CURRENTLY authenticated to the system.</p>
+<h2 id="resources">Resources</h2>
+<p>Windows has a concept of resources known as Objects, there are multiple types of these:</p>
+<ul>
+<li>Files/Directories</li>
+<li>Registry Entries</li>
+<li>Services</li>
+</ul>
+<p>Everything is treated as an object and every object has a set of permissions attached to it. In most cases these are inherited from the parent directory but it is not allways the case and can lead to vulnerabilities we can take advantage of, and sometimes the inheritence itself is the thing we will look to take advantage of.</p>
+<p>Whether a user has permission to perform certain actions on a resource will depend on what Groups that User is a member of and what permissions the User has.</p>
+<pre><code class="language-bash">whoami          # computername\username
+whoami /logonid # Gets the SID for our user
+whoami /priv    # Permissions
+whoami /groups  # Group Membership
+whoami /all     # All the above at once
 </code></pre>
-<p>This is a test to see if the pipelines are still working..</p>
-<p>(doesn't look like they are)</p>
-<p>Maybe it's fixed now?</p>
+<h2 id="acls-aces">ACLs &amp; ACEs</h2>
+<p>Permissions to access resources (<em>Objects</em>) in Windows are controlled by the ACLs or Access Control Lists for that resource.</p>
+<p>Each ACL is made up of zero or more access control entries (ACEs)</p>
+<p>Each ACE define the relationship between a Principal (the name Windows uses for Users and Groups) and a certain access right.</p>
+<p>To view the ACL for a particular Object you can use the GUI to open the Advanced Security Settings menu, or you can run the following command in PowerShell:</p>
+<pre><code class="language-bash">Get-ACL &lt;file&gt;
+</code></pre>
+<pre><code class="language-bash">PS C:\Users\MrBullsec\Documents&gt; Get-Acl .\notes_checklist.md
+
+
+    Directory: C:\Users\MrBullsec\Documents
+
+
+Path               Owner         Access
+----               -----         ------
+notes_checklist.md CC1\MrBullsec NT AUTHORITY\SYSTEM Allow  FullControl...
+
+</code></pre>
+<p>or the following in CMD.exe:</p>
+<pre><code class="language-bash">icacls &lt;file&gt;
+</code></pre>
+<pre><code class="language-bash">PS C:\Users\MrBullsec\Documents&gt; icacls .\notes_checklist.md
+.\notes_checklist.md NT AUTHORITY\SYSTEM:(I)(F)
+                     BUILTIN\Administrators:(I)(F)
+                     CC1\MrBullsec:(I)(F)
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../hydra_cheat_sheet/" class="btn btn-neutral float-left" title="Hydra Cheat Sheet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../msfvenom_cheatsheet/" class="btn btn-neutral float-right" title="MSFVenom Cheatsheet">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../.." class="btn btn-neutral float-left" title="Welcome to MkDocs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2022-07-09-impacket/" class="btn btn-neutral float-right" title="2022 07 09 impacket">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -168,10 +234,10 @@ echo $1
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../hydra_cheat_sheet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../msfvenom_cheatsheet/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../2022-07-09-impacket/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

