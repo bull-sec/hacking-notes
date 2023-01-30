@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../../Recon/recon/">
+        <link rel="prev" href="../2022-07-30-file-transfers-101/">
       
       
-        <link rel="next" href="../../Windows/PowerShell/">
+        <link rel="next" href="../2022-08-07-auth-bypass-headers/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.8">
     
     
       
-        <title>Web Application Hacking - Hacking Notes</title>
+        <title>Pivoting & Lateral Movement - Hacking Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#web-application-hacking" class="md-skip">
+        <a href="#pivoting-lateral-movement" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +81,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+    <a href="../../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Web Application Hacking
+              Pivoting & Lateral Movement
             
           </span>
         </div>
@@ -167,7 +167,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+    <a href="../../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -186,7 +186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Welcome to MkDocs
       </a>
     </li>
@@ -199,14 +199,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
@@ -215,7 +217,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Cheatsheets
@@ -226,14 +228,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
       
       
       
@@ -242,7 +246,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2_1">
           <span class="md-nav__icon md-icon"></span>
           General
@@ -255,7 +259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-07-30-file-transfers-101/" class="md-nav__link">
+      <a href="../2022-07-30-file-transfers-101/" class="md-nav__link">
         File Transfers 101
       </a>
     </li>
@@ -267,11 +271,114 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-07-30-pivot-101/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Pivoting & Lateral Movement
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Pivoting & Lateral Movement
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#socat" class="md-nav__link">
+    SOCAT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putty" class="md-nav__link">
+    Putty
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plink" class="md-nav__link">
+    Plink
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metasploit" class="md-nav__link">
+    Metasploit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chisel" class="md-nav__link">
+    Chisel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    SSH
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-forward" class="md-nav__link">
+    Remote Forward
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-tunneling" class="md-nav__link">
+    Dynamic tunneling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -283,7 +390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-08-07-auth-bypass-headers/" class="md-nav__link">
+      <a href="../2022-08-07-auth-bypass-headers/" class="md-nav__link">
         Auth Bypass Headers"
       </a>
     </li>
@@ -297,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-10-04-pentesting-email-servers/" class="md-nav__link">
+      <a href="../2022-10-04-pentesting-email-servers/" class="md-nav__link">
         Email Pentesting
       </a>
     </li>
@@ -311,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/Kubernetes_Pentesting/" class="md-nav__link">
+      <a href="../Kubernetes_Pentesting/" class="md-nav__link">
         Pentesting Kubernetes
       </a>
     </li>
@@ -325,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/cheatsheet_js/" class="md-nav__link">
+      <a href="../cheatsheet_js/" class="md-nav__link">
         Commands
       </a>
     </li>
@@ -339,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/hydra_cheat_sheet/" class="md-nav__link">
+      <a href="../hydra_cheat_sheet/" class="md-nav__link">
         Hydra Cheat Sheet
       </a>
     </li>
@@ -353,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/msfvenom_cheatsheet/" class="md-nav__link">
+      <a href="../msfvenom_cheatsheet/" class="md-nav__link">
         MSFVenom Cheatsheet
       </a>
     </li>
@@ -367,7 +474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/splunk_cheat_sheet/" class="md-nav__link">
+      <a href="../splunk_cheat_sheet/" class="md-nav__link">
         Splunk Cheatsheet
       </a>
     </li>
@@ -415,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/2022-07-30-x-without-y/" class="md-nav__link">
+      <a href="../../Linux/2022-07-30-x-without-y/" class="md-nav__link">
         X Without Y (Living off the Land)
       </a>
     </li>
@@ -429,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/Powershell_Empire/" class="md-nav__link">
+      <a href="../../Linux/Powershell_Empire/" class="md-nav__link">
         Powershell Empire
       </a>
     </li>
@@ -443,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/linux/" class="md-nav__link">
+      <a href="../../Linux/linux/" class="md-nav__link">
         Linux 101
       </a>
     </li>
@@ -491,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/101_windows/" class="md-nav__link">
+      <a href="../../Windows/101_windows/" class="md-nav__link">
         Windows Privilege Escalation 101
       </a>
     </li>
@@ -505,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-07-09-impacket/" class="md-nav__link">
+      <a href="../../Windows/2022-07-09-impacket/" class="md-nav__link">
         Impacket Toolset
       </a>
     </li>
@@ -519,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-07-10-bloodhound/" class="md-nav__link">
+      <a href="../../Windows/2022-07-10-bloodhound/" class="md-nav__link">
         BloodHound
       </a>
     </li>
@@ -533,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-08-10-golden-ticket/" class="md-nav__link">
+      <a href="../../Windows/2022-08-10-golden-ticket/" class="md-nav__link">
         Golden Tickets
       </a>
     </li>
@@ -547,7 +654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2023-01-15-101_icalcs/" class="md-nav__link">
+      <a href="../../Windows/2023-01-15-101_icalcs/" class="md-nav__link">
         ICACLs 101
       </a>
     </li>
@@ -603,7 +710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Recon/mapping/" class="md-nav__link">
+      <a href="../../../Recon/mapping/" class="md-nav__link">
         Application Mapping
       </a>
     </li>
@@ -617,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Recon/recon/" class="md-nav__link">
+      <a href="../../../Recon/recon/" class="md-nav__link">
         Recon and Information Gathering
       </a>
     </li>
@@ -637,16 +744,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -655,7 +760,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Web
@@ -666,21 +771,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../Web/web_hacking/" class="md-nav__link">
         Web Application Hacking
       </a>
-      
     </li>
   
 
@@ -727,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Windows/PowerShell/" class="md-nav__link">
+      <a href="../../../Windows/PowerShell/" class="md-nav__link">
         PowerShell
       </a>
     </li>
@@ -741,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Windows/windows_101/" class="md-nav__link">
+      <a href="../../../Windows/windows_101/" class="md-nav__link">
         Windows 101
       </a>
     </li>
@@ -775,6 +870,83 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#socat" class="md-nav__link">
+    SOCAT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putty" class="md-nav__link">
+    Putty
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plink" class="md-nav__link">
+    Plink
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metasploit" class="md-nav__link">
+    Metasploit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chisel" class="md-nav__link">
+    Chisel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    SSH
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-forward" class="md-nav__link">
+    Remote Forward
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-tunneling" class="md-nav__link">
+    Dynamic tunneling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -789,7 +961,95 @@
 
 
 
-<h1 id="web-application-hacking">Web Application Hacking</h1>
+<h1 id="pivoting-lateral-movement">Pivoting &amp; Lateral Movement</h1>
+<p>Sometimes we just can't get access to the thing that we need to exploit.</p>
+<p>When that happens we need to know the different ways in which we can get around this little hurdle, as there is always a way.</p>
+<p><a href="https://unix.stackexchange.com/questions/293304/using-netcat-for-port-forwarding">The question on StackExchange that spawned this post</a></p>
+<h2 id="socat">SOCAT</h2>
+<pre><code class="language-bash">socat tcp-listen:8001,reuseaddr,fork tcp:localhost:8000
+</code></pre>
+<h2 id="python">Python</h2>
+<p>Not something you want to code yourself with any kind of time contraints, but it's totally possible.</p>
+<p>Best choice is to use an existing library like <a href="https://pypi.org/project/sshtunnel/">sshtunnel</a> which you can use to do things like the following (which forwards a Vagrant server to the local MySQL port):</p>
+<pre><code class="language-python">from sshtunnel import open_tunnel
+from time import sleep
+
+with open_tunnel(
+    ('localhost', 2222),
+    ssh_username=&quot;vagrant&quot;,
+    ssh_password=&quot;vagrant&quot;,
+    remote_bind_address=('127.0.0.1', 3306)
+) as server:
+
+    print(server.local_bind_port)
+    while True:
+        # press Ctrl-C for stopping
+        sleep(1)
+
+print('FINISH!')
+</code></pre>
+<h2 id="putty">Putty</h2>
+<p>Basically SSH for Windows. Usually the most interaction we'll have with this is when we find one of it's keys (.ppk) laying around on a machine.</p>
+<p>With that being said...</p>
+<p>Convert Putty key to SSH key:</p>
+<pre><code class="language-bash">puttygen id_dsa.ppk -O private-openssh -o id_dsa
+
+puttygen id_dsa.ppk -O public-openssh -o id_dsa.pub
+</code></pre>
+<p>Sometimes Putty also has passwords left in the registry:</p>
+<h2 id="plink">Plink</h2>
+<p>For this to work we need to make sure SSH is turned on. </p>
+<pre><code class="language-bash">service ssh restart
+</code></pre>
+<p>The on the target machine we can do the following:</p>
+<pre><code class="language-bash">.\plink.exe root@kali_ip -R KALI_PORT:IP_OF_TARGET_MACHINE:TARGET_PORT
+</code></pre>
+<p>(Could come in handy if we have SMB creds for an admin but we can't access SMB remotely)</p>
+<h2 id="metasploit">Metasploit</h2>
+<p>In a <code>meterpreter</code> session:</p>
+<pre><code class="language-bash">portfwd add -l LOCAL_PORT -p DESTINATION_PORT -r TARGET_IP
+</code></pre>
+<pre><code class="language-bash">run autoroute -s 10.1.1.0/24
+run autoroute -s 10.2.2.0/24
+</code></pre>
+<pre><code class="language-bash">use auxiliary/server/socks4a
+set SRVHOST 127.0.0.1
+exploit -j
+
+</code></pre>
+<p>Now on our host machine we can scan the IT network:</p>
+<pre><code class="language-bash">vim /etc/proxychains.conf 
+...
+socks4 127.0.0.1 1080
+</code></pre>
+<pre><code class="language-bash">proxychains nmap -sT -v -Pn 10.2.2.224
+</code></pre>
+<h2 id="chisel">Chisel</h2>
+<p>Chisel is an awesome tool that is more than capable of turning what feels like a lost cause into a system own.</p>
+<p><a href="https://github.com/jpillora/chisel">Github Link for Chisel</a></p>
+<p>On the host:</p>
+<pre><code class="language-bash">chisel(.exe) client 10.10.14.3:1338 R:1234:127.0.0.1:1234
+</code></pre>
+<p>That will setup a connection to 1337, which will then forward port 1234 to localhost:</p>
+<pre><code class="language-bash">chisel(.exe) server -p 1337 -reverse -v
+</code></pre>
+<h2 id="ssh">SSH</h2>
+<p>Local Foward:</p>
+<pre><code class="language-bash">ssh -L 80:127.0.0.1:80 someserver@someip
+</code></pre>
+<h3 id="remote-forward">Remote Forward</h3>
+<pre><code class="language-bash">ssh -R 8080:localhost:80 someserver@someip
+</code></pre>
+<h3 id="dynamic-tunneling">Dynamic tunneling</h3>
+<pre><code class="language-bash">ssh -D 9000 sean@10.11.1.251
+</code></pre>
+<pre><code class="language-bash">vim /etc/proxychains.conf 
+
+socks4 127.0.0.1 1080
+</code></pre>
+<pre><code class="language-bash">proxychains nmap -sT -v -Pn 10.2.2.224
+</code></pre>
+<p>This creates a dynamic tunnel over port 9000 using SOCKS(4a)</p>
 
 
 
@@ -827,10 +1087,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
     
   </body>

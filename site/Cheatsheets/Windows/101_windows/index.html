@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../../Recon/recon/">
+        <link rel="prev" href="../../Linux/linux/">
       
       
-        <link rel="next" href="../../Windows/PowerShell/">
+        <link rel="next" href="../2022-07-09-impacket/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.8">
     
     
       
-        <title>Web Application Hacking - Hacking Notes</title>
+        <title>Windows Privilege Escalation 101 - Hacking Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#web-application-hacking" class="md-skip">
+        <a href="#windows-privilege-escalation-101" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +81,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+    <a href="../../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Web Application Hacking
+              Windows Privilege Escalation 101
             
           </span>
         </div>
@@ -167,7 +167,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+    <a href="../../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -186,7 +186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Welcome to MkDocs
       </a>
     </li>
@@ -199,14 +199,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
@@ -215,7 +217,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Cheatsheets
@@ -255,7 +257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-07-30-file-transfers-101/" class="md-nav__link">
+      <a href="../../General/2022-07-30-file-transfers-101/" class="md-nav__link">
         File Transfers 101
       </a>
     </li>
@@ -269,7 +271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-07-30-pivot-101/" class="md-nav__link">
+      <a href="../../General/2022-07-30-pivot-101/" class="md-nav__link">
         Pivoting & Lateral Movement
       </a>
     </li>
@@ -283,7 +285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-08-07-auth-bypass-headers/" class="md-nav__link">
+      <a href="../../General/2022-08-07-auth-bypass-headers/" class="md-nav__link">
         Auth Bypass Headers"
       </a>
     </li>
@@ -297,7 +299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-10-04-pentesting-email-servers/" class="md-nav__link">
+      <a href="../../General/2022-10-04-pentesting-email-servers/" class="md-nav__link">
         Email Pentesting
       </a>
     </li>
@@ -311,7 +313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/Kubernetes_Pentesting/" class="md-nav__link">
+      <a href="../../General/Kubernetes_Pentesting/" class="md-nav__link">
         Pentesting Kubernetes
       </a>
     </li>
@@ -325,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/cheatsheet_js/" class="md-nav__link">
+      <a href="../../General/cheatsheet_js/" class="md-nav__link">
         Commands
       </a>
     </li>
@@ -339,7 +341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/hydra_cheat_sheet/" class="md-nav__link">
+      <a href="../../General/hydra_cheat_sheet/" class="md-nav__link">
         Hydra Cheat Sheet
       </a>
     </li>
@@ -353,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/msfvenom_cheatsheet/" class="md-nav__link">
+      <a href="../../General/msfvenom_cheatsheet/" class="md-nav__link">
         MSFVenom Cheatsheet
       </a>
     </li>
@@ -367,7 +369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/splunk_cheat_sheet/" class="md-nav__link">
+      <a href="../../General/splunk_cheat_sheet/" class="md-nav__link">
         Splunk Cheatsheet
       </a>
     </li>
@@ -415,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/2022-07-30-x-without-y/" class="md-nav__link">
+      <a href="../../Linux/2022-07-30-x-without-y/" class="md-nav__link">
         X Without Y (Living off the Land)
       </a>
     </li>
@@ -429,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/Powershell_Empire/" class="md-nav__link">
+      <a href="../../Linux/Powershell_Empire/" class="md-nav__link">
         Powershell Empire
       </a>
     </li>
@@ -443,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/linux/" class="md-nav__link">
+      <a href="../../Linux/linux/" class="md-nav__link">
         Linux 101
       </a>
     </li>
@@ -462,14 +464,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
       
       
       
@@ -478,7 +482,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2_3">
           <span class="md-nav__icon md-icon"></span>
           Windows
@@ -489,11 +493,100 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/101_windows/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Windows Privilege Escalation 101
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Windows Privilege Escalation 101
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-accounts" class="md-nav__link">
+    User Accounts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-accounts" class="md-nav__link">
+    Service Accounts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    Groups
+  </a>
+  
+    <nav class="md-nav" aria-label="Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regular-groups" class="md-nav__link">
+    Regular Groups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psuedo-groups" class="md-nav__link">
+    Psuedo Groups
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acls-aces" class="md-nav__link">
+    ACLs &amp; ACEs
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -505,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-07-09-impacket/" class="md-nav__link">
+      <a href="../2022-07-09-impacket/" class="md-nav__link">
         Impacket Toolset
       </a>
     </li>
@@ -519,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-07-10-bloodhound/" class="md-nav__link">
+      <a href="../2022-07-10-bloodhound/" class="md-nav__link">
         BloodHound
       </a>
     </li>
@@ -533,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-08-10-golden-ticket/" class="md-nav__link">
+      <a href="../2022-08-10-golden-ticket/" class="md-nav__link">
         Golden Tickets
       </a>
     </li>
@@ -547,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2023-01-15-101_icalcs/" class="md-nav__link">
+      <a href="../2023-01-15-101_icalcs/" class="md-nav__link">
         ICACLs 101
       </a>
     </li>
@@ -603,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Recon/mapping/" class="md-nav__link">
+      <a href="../../../Recon/mapping/" class="md-nav__link">
         Application Mapping
       </a>
     </li>
@@ -617,7 +710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Recon/recon/" class="md-nav__link">
+      <a href="../../../Recon/recon/" class="md-nav__link">
         Recon and Information Gathering
       </a>
     </li>
@@ -637,16 +730,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -655,7 +746,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Web
@@ -666,21 +757,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../Web/web_hacking/" class="md-nav__link">
         Web Application Hacking
       </a>
-      
     </li>
   
 
@@ -727,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Windows/PowerShell/" class="md-nav__link">
+      <a href="../../../Windows/PowerShell/" class="md-nav__link">
         PowerShell
       </a>
     </li>
@@ -741,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Windows/windows_101/" class="md-nav__link">
+      <a href="../../../Windows/windows_101/" class="md-nav__link">
         Windows 101
       </a>
     </li>
@@ -775,6 +856,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-accounts" class="md-nav__link">
+    User Accounts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-accounts" class="md-nav__link">
+    Service Accounts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    Groups
+  </a>
+  
+    <nav class="md-nav" aria-label="Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regular-groups" class="md-nav__link">
+    Regular Groups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psuedo-groups" class="md-nav__link">
+    Psuedo Groups
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acls-aces" class="md-nav__link">
+    ACLs &amp; ACEs
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -789,7 +933,66 @@
 
 
 
-<h1 id="web-application-hacking">Web Application Hacking</h1>
+<h1 id="windows-privilege-escalation-101">Windows Privilege Escalation 101</h1>
+<h2 id="user-accounts">User Accounts</h2>
+<p>These are the basic account(s) that you would use to log into a Windows machine.</p>
+<p>They are a collection of settings/preferences bound to a unique identity. i.e. the username and the files linked to that account along with other preferences such as installed applications and group membership(s), all the various things that could be associated with a user account.</p>
+<p>The local "Administrator" account is created by default during the installation process. It is not directly available to log in, similar to the <code>root</code> account on modern Linux systems, with the difference being that it can be activated using <code>net user administrator /active:yes</code> and it will become an account that appears on the login screen.</p>
+<p>Depending on the version of Windows that is running there may be several other default User accounts such as "Guest".</p>
+<h2 id="service-accounts">Service Accounts</h2>
+<p>Used to run services (duh), services are programs that are being ran either constantly (in the case of web servers and FTP applications) or on a scheduled basis by a dedicated account with permissions set up specifically for that account. So in the case of the <code>NT AUTHORITY\IUSR</code> account which is used to control the IIS web service, it has specific permissions which allow it to manage the web server and all of it's associated functions. </p>
+<p>They cannot be used to log in to Windows directly. But they are capable of granting a "user" shell, which will allow for access to the system but with generally limited capabilites and permissions.</p>
+<p>The <code>NT AUTHORITY\SYSTEM</code> account is a default service account created during installation which has the highest privileges of any local account on Windows. It is the Windows equivalent of the "root" account and has <em>full</em> control over any application or user account on the system. In some instances it will even be a trusted account on other machines in the same network allowing for lateral movement.</p>
+<p>There are other default service accounts that are created during the installation process, such as NETWORK SERVICE and LOCAL SERVICE, and the aforementioned IUSR.</p>
+<h2 id="groups">Groups</h2>
+<p>User accounts can belong to multiple groups, and groups can have multiple users (same as Linux). Not much else to explain here, just bear in mind that there are LOTS of groups on Windows systems, and especially when it comes to AD/Domain controllers you're going to have to get your reference sheets out and run things like <code>BloodHound</code> to map all of the interactions between the groups.</p>
+<p>Groups allow for easier access control configuration by allowing multiple users the same level of access to a resource. We could created a group called "Tech_Admins" and give them access to restart/modify specific services and applications to allow them to perform maintenance or upgrades. </p>
+<p>There are two types of groups:</p>
+<h3 id="regular-groups"><em>Regular Groups</em></h3>
+<p>These groups have a set list of members and are created by the domain or system Administrator(s), with the exception of the default groups such as "Users" which contain ALL regular (non-service) users of a system.</p>
+<h3 id="psuedo-groups"><em>Psuedo Groups</em></h3>
+<p>These groups have a dynamic list of users that can change based on certain interactions, i.e. the "Authenticated Users" group contains a list of members who are CURRENTLY authenticated to the system.</p>
+<h2 id="resources">Resources</h2>
+<p>Windows has a concept of resources known as Objects, there are multiple types of these:</p>
+<ul>
+<li>Files/Directories</li>
+<li>Registry Entries</li>
+<li>Services</li>
+</ul>
+<p>Everything is treated as an object and every object has a set of permissions attached to it. In most cases these are inherited from the parent directory but it is not allways the case and can lead to vulnerabilities we can take advantage of, and sometimes the inheritence itself is the thing we will look to take advantage of.</p>
+<p>Whether a user has permission to perform certain actions on a resource will depend on what Groups that User is a member of and what permissions the User has.</p>
+<pre><code class="language-bash">whoami          # computername\username
+whoami /logonid # Gets the SID for our user
+whoami /priv    # Permissions
+whoami /groups  # Group Membership
+whoami /all     # All the above at once
+</code></pre>
+<h2 id="acls-aces">ACLs &amp; ACEs</h2>
+<p>Permissions to access resources (<em>Objects</em>) in Windows are controlled by the ACLs or Access Control Lists for that resource.</p>
+<p>Each ACL is made up of zero or more access control entries (ACEs)</p>
+<p>Each ACE define the relationship between a Principal (the name Windows uses for Users and Groups) and a certain access right.</p>
+<p>To view the ACL for a particular Object you can use the GUI to open the Advanced Security Settings menu, or you can run the following command in PowerShell:</p>
+<pre><code class="language-bash">Get-ACL &lt;file&gt;
+</code></pre>
+<pre><code class="language-bash">PS C:\Users\MrBullsec\Documents&gt; Get-Acl .\notes_checklist.md
+
+
+    Directory: C:\Users\MrBullsec\Documents
+
+
+Path               Owner         Access
+----               -----         ------
+notes_checklist.md CC1\MrBullsec NT AUTHORITY\SYSTEM Allow  FullControl...
+
+</code></pre>
+<p>or the following in CMD.exe:</p>
+<pre><code class="language-bash">icacls &lt;file&gt;
+</code></pre>
+<pre><code class="language-bash">PS C:\Users\MrBullsec\Documents&gt; icacls .\notes_checklist.md
+.\notes_checklist.md NT AUTHORITY\SYSTEM:(I)(F)
+                     BUILTIN\Administrators:(I)(F)
+                     CC1\MrBullsec:(I)(F)
+</code></pre>
 
 
 
@@ -827,10 +1030,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
     
   </body>

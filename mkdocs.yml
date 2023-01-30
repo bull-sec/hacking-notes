@@ -1,6 +1,8 @@
 site_name: Hacking Notes
 theme:
-  name: readthedocs
+  name: material
+  palette: 
+    scheme: slate
   highlightjs: true
   hljs_languages:
     - python

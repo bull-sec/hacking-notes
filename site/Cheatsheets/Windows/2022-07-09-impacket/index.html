@@ -1,0 +1,1148 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../101_windows/">
+      
+      
+        <link rel="next" href="../2022-07-10-bloodhound/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.8">
+    
+    
+      
+        <title>Impacket Toolset - Hacking Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#impacket-toolset" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hacking Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Impacket Toolset
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Hacking Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Welcome to MkDocs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Cheatsheets
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Cheatsheets
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+          General
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          General
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/2022-07-30-file-transfers-101/" class="md-nav__link">
+        File Transfers 101
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/2022-07-30-pivot-101/" class="md-nav__link">
+        Pivoting & Lateral Movement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/2022-08-07-auth-bypass-headers/" class="md-nav__link">
+        Auth Bypass Headers"
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/2022-10-04-pentesting-email-servers/" class="md-nav__link">
+        Email Pentesting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Kubernetes_Pentesting/" class="md-nav__link">
+        Pentesting Kubernetes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/cheatsheet_js/" class="md-nav__link">
+        Commands
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/hydra_cheat_sheet/" class="md-nav__link">
+        Hydra Cheat Sheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/msfvenom_cheatsheet/" class="md-nav__link">
+        MSFVenom Cheatsheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/splunk_cheat_sheet/" class="md-nav__link">
+        Splunk Cheatsheet
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2022-07-30-x-without-y/" class="md-nav__link">
+        X Without Y (Living off the Land)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/Powershell_Empire/" class="md-nav__link">
+        Powershell Empire
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/linux/" class="md-nav__link">
+        Linux 101
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          Windows
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Windows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../101_windows/" class="md-nav__link">
+        Windows Privilege Escalation 101
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Impacket Toolset
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Impacket Toolset
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#standoutmost-useful-tools" class="md-nav__link">
+    Standout/Most Useful Tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocols" class="md-nav__link">
+    Protocols
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-execution" class="md-nav__link">
+    Remote Execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kerberos" class="md-nav__link">
+    Kerberos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-toolsmitm-attacks" class="md-nav__link">
+    Server Tools/MiTM Attacks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wmi" class="md-nav__link">
+    WMI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-vulnerabilities" class="md-nav__link">
+    Known Vulnerabilities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smbmsrpc" class="md-nav__link">
+    SMB/MSRPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-formats" class="md-nav__link">
+    File Formats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2022-07-10-bloodhound/" class="md-nav__link">
+        BloodHound
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2022-08-10-golden-ticket/" class="md-nav__link">
+        Golden Tickets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2023-01-15-101_icalcs/" class="md-nav__link">
+        ICACLs 101
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Recon
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Recon
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Recon/mapping/" class="md-nav__link">
+        Application Mapping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Recon/recon/" class="md-nav__link">
+        Recon and Information Gathering
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Web
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Web
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Web/web_hacking/" class="md-nav__link">
+        Web Application Hacking
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Windows
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Windows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Windows/PowerShell/" class="md-nav__link">
+        PowerShell
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Windows/windows_101/" class="md-nav__link">
+        Windows 101
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#standoutmost-useful-tools" class="md-nav__link">
+    Standout/Most Useful Tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocols" class="md-nav__link">
+    Protocols
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-execution" class="md-nav__link">
+    Remote Execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kerberos" class="md-nav__link">
+    Kerberos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-toolsmitm-attacks" class="md-nav__link">
+    Server Tools/MiTM Attacks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wmi" class="md-nav__link">
+    WMI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-vulnerabilities" class="md-nav__link">
+    Known Vulnerabilities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smbmsrpc" class="md-nav__link">
+    SMB/MSRPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-formats" class="md-nav__link">
+    File Formats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="impacket-toolset">Impacket Toolset</h1>
+<p><a href="https://www.secureauth.com/labs/open-source-tools/impacket/">Adapted from the Official Impacket Documentation</a></p>
+<p>Impacket is a whole collection of scripts and libraries written in Python :heart: that let you do some awesome things during a penetration test.</p>
+<p>The first part of this is a list of what I consider to be the most useful tools, and a brief description of how they can be used or how I've used them. The rest is from the official but I've made some formatting changes.</p>
+<h2 id="standoutmost-useful-tools">Standout/Most Useful Tools</h2>
+<ul>
+<li><code>smbserver.py</code> - Does what it says on the tin. Gives you a quick and dirty SMB server that you can use for file transfers or for getting a service or user to authenticate against.</li>
+<li><code>GetUserSPNs.py</code> - a.k.a Kerberoast. If you have a username/password combination for a user and Kerberos is open on the host then this is 100% worth a shot. If it's successful (i.e. there is <a href="https://learn.microsoft.com/en-us/windows/win32/ad/service-principal-names">Service Principal Name</a> attached to account) the it'll return a <code>Service Ticket</code> which hopefully can be cracked a give you the password for whatever service account is attached.</li>
+<li>Any of the <code>Remote Execution</code> tools, but specifically <code>psexec.py</code> which is an awesome little tool for running remote commands on a target</li>
+<li><code>mimikatz.py</code> - mini RPC server for mimikatz which drops you into a shell on the target that lets you run mimikatz commands</li>
+</ul>
+<p>There are LOADS more though, <code>impacket</code> is a whole collection of scripts.</p>
+<p>Here's some additional resources.</p>
+<ul>
+<li>
+<p><a href="https://tools.thehacker.recipes/impacket/examples/">https://tools.thehacker.recipes/impacket/examples/</a></p>
+</li>
+<li>
+<p><a href="https://youtu.be/9QoPmtpn-gs">How to Build a Home Lab</a></p>
+</li>
+</ul>
+<blockquote>
+<p>Everything following this is from the official documentation aside from some formatting changes</p>
+</blockquote>
+<h2 id="protocols">Protocols</h2>
+<ul>
+<li>Ethernet, Linux “Cooked” capture.</li>
+<li>IP, TCP, UDP, ICMP, IGMP, ARP.</li>
+<li>IPv4 and IPv6 Support.</li>
+<li>NMB and SMB1, SMB2 and SMB3 (high-level implementations).</li>
+<li>MSRPC version 5, over different transports: TCP, SMB/TCP, SMB/NetBIOS and HTTP.</li>
+<li>Plain, NTLM and Kerberos authentications, using password/hashes/tickets/keys.</li>
+<li>Portions/full implementation of the following MSRPC interfaces: EPM, DTYPES, LSAD, LSAT, NRPC, RRP, SAMR, SRVS, WKST, SCMR, DCOM, WMI</li>
+<li>Portions of TDS (MSSQL) and LDAP protocol implementations.</li>
+</ul>
+<h2 id="tools">Tools</h2>
+<h3 id="remote-execution">Remote Execution</h3>
+<ul>
+<li><code>psexec.py</code>: PSEXEC like functionality example using RemComSvc (https://github.com/kavika13/RemCom).</li>
+<li><code>smbexec.py</code>: A similar approach to PSEXEC w/o using RemComSvc. The technique is described here. Our implementation goes one step further, instantiating a local smbserver to receive the output of the commands. This is useful in the situation where the target machine does NOT have a writeable share available.</li>
+<li><code>atexec.py</code>: This example executes a command on the target machine through the Task Scheduler service and returns the output of the executed command.</li>
+<li><code>wmiexec.py</code>: A semi-interactive shell, used through Windows Management Instrumentation. It does not require to install any service/agent at the target server. Runs as Administrator. Highly stealthy.</li>
+<li><code>dcomexec.py</code>: A semi-interactive shell similar to wmiexec.py, but using different DCOM endpoints. Currently supports MMC20.Application, ShellWindows and ShellBrowserWindow objects.</li>
+</ul>
+<h3 id="kerberos">Kerberos</h3>
+<ul>
+<li><code>GetTGT.py</code>: Given a password, hash or aesKey, this script will request a TGT and save it as ccache.</li>
+<li><code>GetST.py</code>: Given a password, hash, aesKey or TGT in ccache, this script will request a Service Ticket and save it as ccache. If the account has constrained delegation (with protocol transition) privileges you will be able to use the -impersonate switch to request the ticket on behalf another user.</li>
+<li><code>GetPac.py</code>: This script will get the PAC (Privilege Attribute Certificate) structure of the specified target user just having a normal authenticated user credentials. It does so by using a mix of [MS-SFU]’s S4USelf + User to User Kerberos Authentication.</li>
+<li><code>GetUserSPNs.py</code>: This example will try to find and fetch Service Principal Names that are associated with normal user accounts. Output is compatible with JtR and HashCat.</li>
+<li><code>GetNPUsers.py</code>: This example will attempt to list and get TGTs for those users that have the property ‘Do not require Kerberos preauthentication’ set (UF_DONT_REQUIRE_PREAUTH). Output is compatible with JtR.</li>
+<li><code>rbcd.py</code>: Example script for handling the msDS-AllowedToActOnBehalfOfOtherIdentity property of a target computer.</li>
+<li><code>ticketConverter.py</code>: This script will convert kirbi files, commonly used by mimikatz, into ccache files used by Impacket, and vice versa.</li>
+<li><code>ticketer.py</code>: This script will create Golden/Silver tickets from scratch or based on a template (legally requested from the KDC) allowing you to customize some of the parameters set inside the PAC_LOGON_INFO structure, in particular the groups, ExtraSids, duration, etc.</li>
+<li><code>raiseChild.py</code>: This script implements a child-domain to forest privilege escalation by (ab)using the concept of Golden Tickets and ExtraSids.
+Windows Secrets</li>
+<li><code>secretsdump.py</code>: Performs various techniques to dump secrets from the remote machine without executing any agent there. For SAM and LSA Secrets (including cached creds) we try to read as much as we can from the registry and then we save the hives in the target system (%SYSTEMROOT%\Temp directory) and read the rest of the data from there. For DIT files, we dump NTLM hashes, Plaintext credentials (if available) and Kerberos keys using the DL_DRSGetNCChanges() method. It can also dump NTDS.dit via vssadmin executed with the smbexec/wmiexec approach. The script initiates the services required for its working if they are not available (e.g. Remote Registry, even if it is disabled). After the work is done, things are restored to the original state.</li>
+<li><code>mimikatz.py</code>: Mini shell to control a remote mimikatz RPC server developed by @gentilkiwi.</li>
+</ul>
+<h3 id="server-toolsmitm-attacks">Server Tools/MiTM Attacks</h3>
+<ul>
+<li><code>ntlmrelayx.py</code>: This script performs NTLM Relay Attacks, setting an SMB, HTTP, WCF and RAW Server and relaying credentials to many different protocols (SMB, HTTP, MSSQL, LDAP, IMAP, POP3, etc.). The script can be used with predefined attacks that can be triggered when a connection is relayed (e.g. create a user through LDAP) or can be executed in SOCKS mode. In this mode, for every connection relayed, it will be available to be used later on multiple times through a SOCKS proxy.</li>
+<li><code>karmaSMB.py</code>: A SMB Server that answers specific file contents regardless of the SMB share and pathname specified.</li>
+<li><code>smbserver.py</code>: A Python implementation of an SMB server. Allows to quickly set up shares and user accounts.</li>
+</ul>
+<h3 id="wmi">WMI</h3>
+<ul>
+<li><code>wmiquery.py</code>: It allows to issue WQL queries and get description of WMI objects at the target system (e.g. select name from win32_account).</li>
+<li><code>wmipersist.py</code>: This script creates/removes a WMI Event Consumer/Filter and link between both to execute Visual Basic based on the WQL filter or timer specified.</li>
+</ul>
+<h3 id="known-vulnerabilities">Known Vulnerabilities</h3>
+<ul>
+<li><code>goldenPac.py</code>: Exploit for MS14-068. Saves the golden ticket and also launches a PSEXEC session at the target.</li>
+<li><code>sambaPipe.py</code>: This script will exploit CVE-2017-7494, uploading and executing the shared library specified by the user through the -so parameter.</li>
+<li><code>smbrelayx.py</code>: Exploit for CVE-2015-0005 using a SMB Relay Attack. If the target system is enforcing signing and a machine account was provided, the module will try to gather the SMB session key through NETLOGON.</li>
+</ul>
+<h3 id="smbmsrpc">SMB/MSRPC</h3>
+<ul>
+<li><code>smbclient.py</code>: A generic SMB client that will let you list shares and files, rename, upload and download files and create and delete directories, all using either username and password or username and hashes combination. It’s an excellent example to see how to use impacket.smb in action.</li>
+<li><code>addcomputer.py</code>: Allows to add a computer to a domain using LDAP or SAMR (SMB).
+getArch.py: This script will connect against a target (or list of targets) machine/s and gather the OS architecture type installed by (ab)using a documented MSRPC feature.</li>
+<li><code>exchanger.py</code>: A tool for connecting to MS Exchange via RPC over HTTP v2.</li>
+<li><code>lookupsid.py</code>: A Windows SID brute forcer example through [MS-LSAT] MSRPC Interface, aiming at finding remote users/groups.</li>
+<li><code>netview.py</code>: Gets a list of the sessions opened at the remote hosts and keep track of them looping over the hosts found and keeping track of who logged in/out from remote servers</li>
+<li><code>reg.py</code>: Remote registry manipulation tool through the [MS-RRP] MSRPC Interface. The idea is to provide similar functionality as the REG.EXE Windows utility.</li>
+<li><code>rpcdump.py</code>: This script will dump the list of RPC endpoints and string bindings registered at the target. It will also try to match them with a list of well known endpoints.</li>
+<li><code>rpcmap.py</code>: Scan for listening DCE/RPC interfaces. This binds to the MGMT interface and gets a list of interface UUIDs. If the MGMT interface is not available, it takes a list of interface UUIDs seen in the wild and tries to bind to each interface.</li>
+<li><code>samrdump.py</code>: An application that communicates with the Security Account Manager Remote interface from the MSRPC suite. It lists system user accounts, available resource shares and other sensitive information exported through this service.</li>
+<li><code>services.py</code>: This script can be used to manipulate Windows services through the [MS-SCMR] MSRPC Interface. It supports start, stop, delete, status, config, list, create and change.</li>
+<li><code>smbpasswd.py</code>: This script is an alternative to smbpasswd tool and intended to be used for changing expired passwords remotely over SMB (MSRPC-SAMR)
+MSSQL / TDS</li>
+<li><code>mssqlinstance.py</code>: Retrieves the MSSQL instances names from the target host.</li>
+<li><code>mssqlclient.py</code>: An MSSQL client, supporting SQL and Windows Authentications (hashes too). It also supports TLS.</li>
+</ul>
+<h3 id="file-formats">File Formats</h3>
+<ul>
+<li><code>esentutl.py</code>: An Extensibe Storage Engine format implementation. Allows dumping catalog, pages and tables of ESE databases (e.g. NTDS.dit)</li>
+<li><code>ntfs-read.py</code>: NTFS format implementation. This script provides a mini shell for browsing and extracting an NTFS volume, including hidden/locked contents.</li>
+<li><code>registry-read.py</code>: A Windwows Registry file format implementation. It allows to parse offline registry hives.</li>
+</ul>
+<h3 id="other">Other</h3>
+<ul>
+<li><code>findDelegation.py</code>: Simple script to quickly list all delegation relationships (unconstrained, constrained, resource-based constrained) in an AD environment.</li>
+<li><code>GetADUsers.py</code>: This script will gather data about the domain’s users and their corresponding email addresses. It will also include some extra information about last logon and last password set attributes.</li>
+<li><code>Get-GPPPassword.py</code>: This example extracts and decrypts Group Policy Preferences passwords using streams for treating files instead of mounting shares. Additionally, it can parse GPP XML files offline.</li>
+<li><code>mqtt_check.py</code>: Simple MQTT example aimed at playing with different login options. Can be converted into a account/password brute forcer quite easily.</li>
+<li><code>rdp_check.py</code>: [MS-RDPBCGR] and [MS-CREDSSP] partial implementation just to reach CredSSP auth. This example tests whether an account is valid on the target host.</li>
+<li><code>sniff.py</code>: Simple packet sniffer that uses the pcapy library to listen for packets in # transit over the specified interface.</li>
+<li><code>sniffer.py</code>: Simple packet sniffer that uses a raw socket to listen for packets in transit corresponding to the specified protocols.</li>
+<li><code>ping.py</code>: Simple ICMP ping that uses the ICMP echo and echo-reply packets to check the status of a host. If the remote host is up, it should reply to the echo probe with an echo-reply packet.</li>
+<li><code>ping6.py</code>: Simple IPv6 ICMP ping that uses the ICMP echo and echo-reply packets to check the status of a host.</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      
+    
+  </body>
+</html>

