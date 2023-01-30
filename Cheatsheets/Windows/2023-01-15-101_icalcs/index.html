@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -842,9 +844,10 @@
 <p>Understanding Windows permissions</p>
 </blockquote>
 <p><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753525(v=ws.10)?redirectedfrom=MSDN">MSDN Link</a></p>
-<pre><code class="language-bash">icacls &lt;FileName&gt; [/grant[:r] &lt;Sid&gt;:&lt;Perm&gt;[...]] [/deny &lt;Sid&gt;:&lt;Perm&gt;[...]] [/remove[:g|:d]] &lt;Sid&gt;[...]] [/t] [/c] [/l] [/q] [/setintegritylevel &lt;Level&gt;:&lt;Policy&gt;[...]]
-icacls &lt;Directory&gt; [/substitute &lt;SidOld&gt; &lt;SidNew&gt; [...]] [/restore &lt;ACLfile&gt; [/c] [/l] [/q]]
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>icacls<span style="color: #f8f8f2"> </span>&lt;FileName&gt;<span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/grant<span style="color: #f92672">[</span>:r<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span>&lt;Sid&gt;:&lt;Perm&gt;<span style="color: #f92672">[</span>...<span style="color: #f92672">]]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/deny<span style="color: #f8f8f2"> </span>&lt;Sid&gt;:&lt;Perm&gt;<span style="color: #f92672">[</span>...<span style="color: #f92672">]]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/remove<span style="color: #f92672">[</span>:g<span style="color: #f8f8f2">|</span>:d<span style="color: #f92672">]]</span><span style="color: #f8f8f2"> </span>&lt;Sid&gt;<span style="color: #f92672">[</span>...<span style="color: #f92672">]]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/t<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/c<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/l<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/q<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/setintegritylevel<span style="color: #f8f8f2"> </span>&lt;Level&gt;:&lt;Policy&gt;<span style="color: #f92672">[</span>...<span style="color: #f92672">]]</span>
+icacls<span style="color: #f8f8f2"> </span>&lt;Directory&gt;<span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/substitute<span style="color: #f8f8f2"> </span>&lt;SidOld&gt;<span style="color: #f8f8f2"> </span>&lt;SidNew&gt;<span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>...<span style="color: #f92672">]]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/restore<span style="color: #f8f8f2"> </span>&lt;ACLfile&gt;<span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/c<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/l<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>/q<span style="color: #f92672">]]</span>
+</code></pre></div>
+
 <hr />
 <h2 id="reading-the-output">Reading the output</h2>
 <p>See below for the full list but the main ones we're really interested in are:</p>
@@ -854,58 +857,59 @@ icacls &lt;Directory&gt; [/substitute &lt;SidOld&gt; &lt;SidNew&gt; [...]] [/res
 </ul>
 <p>Full access obviously gives us full control over the file, (Read, Write, Execute, Delete), and RX gives us Read and Execute capabilities.</p>
 <p>And just after glancing at the others to see if anything else sticks out <code>WDAC</code> actually seems like it could be an important one to keep an eye out for as it seems to be able to control what can and can't run on a system <a href="https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/select-types-of-rules-to-create">MSDN on WDAC</a></p>
-<pre><code class="language-bash">PS C:\Users\MrBullsec\Documents&gt; icacls .\notes_checklist.md
-.\notes_checklist.md NT AUTHORITY\SYSTEM:(I)(F)
-                     BUILTIN\Administrators:(I)(F)
-                     CC1\MrBullsec:(I)(F)
-</code></pre>
-<pre><code class="language-bash">    SIDs may be in either numerical or friendly name form. If you use a numerical form, affix the wildcard character * to the beginning of the SID.
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>PS<span style="color: #f8f8f2"> </span>C:<span style="color: #ae81ff">\U</span>sers<span style="color: #ae81ff">\M</span>rBullsec<span style="color: #ae81ff">\D</span>ocuments&gt;<span style="color: #f8f8f2"> </span>icacls<span style="color: #f8f8f2"> </span>.<span style="color: #ae81ff">\n</span>otes_checklist.md
+.<span style="color: #ae81ff">\n</span>otes_checklist.md<span style="color: #f8f8f2"> </span>NT<span style="color: #f8f8f2"> </span>AUTHORITY<span style="color: #ae81ff">\S</span>YSTEM:<span style="color: #f92672">(</span>I<span style="color: #f92672">)(</span>F<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">                     </span>BUILTIN<span style="color: #ae81ff">\A</span>dministrators:<span style="color: #f92672">(</span>I<span style="color: #f92672">)(</span>F<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">                     </span>CC1<span style="color: #ae81ff">\M</span>rBullsec:<span style="color: #f92672">(</span>I<span style="color: #f92672">)(</span>F<span style="color: #f92672">)</span>
+</code></pre></div>
 
-    icacls preserves the canonical order of ACE entries as:
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">    </span>SIDs<span style="color: #f8f8f2"> </span>may<span style="color: #f8f8f2"> </span>be<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">in</span><span style="color: #f8f8f2"> </span>either<span style="color: #f8f8f2"> </span>numerical<span style="color: #f8f8f2"> </span>or<span style="color: #f8f8f2"> </span>friendly<span style="color: #f8f8f2"> </span>name<span style="color: #f8f8f2"> </span>form.<span style="color: #f8f8f2"> </span>If<span style="color: #f8f8f2"> </span>you<span style="color: #f8f8f2"> </span>use<span style="color: #f8f8f2"> </span>a<span style="color: #f8f8f2"> </span>numerical<span style="color: #f8f8f2"> </span>form,<span style="color: #f8f8f2"> </span>affix<span style="color: #f8f8f2"> </span>the<span style="color: #f8f8f2"> </span>wildcard<span style="color: #f8f8f2"> </span>character<span style="color: #f8f8f2"> </span>*<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>the<span style="color: #f8f8f2"> </span>beginning<span style="color: #f8f8f2"> </span>of<span style="color: #f8f8f2"> </span>the<span style="color: #f8f8f2"> </span>SID.
 
-        Explicit denials
-        Explicit grants
-        Inherited denials
-        Inherited grants
+<span style="color: #f8f8f2">    </span>icacls<span style="color: #f8f8f2"> </span>preserves<span style="color: #f8f8f2"> </span>the<span style="color: #f8f8f2"> </span>canonical<span style="color: #f8f8f2"> </span>order<span style="color: #f8f8f2"> </span>of<span style="color: #f8f8f2"> </span>ACE<span style="color: #f8f8f2"> </span>entries<span style="color: #f8f8f2"> </span>as:
 
-    Perm is a permission mask that can be specified in one of the following forms:
+<span style="color: #f8f8f2">        </span>Explicit<span style="color: #f8f8f2"> </span>denials
+<span style="color: #f8f8f2">        </span>Explicit<span style="color: #f8f8f2"> </span>grants
+<span style="color: #f8f8f2">        </span>Inherited<span style="color: #f8f8f2"> </span>denials
+<span style="color: #f8f8f2">        </span>Inherited<span style="color: #f8f8f2"> </span>grants
 
-        A sequence of simple rights:
+<span style="color: #f8f8f2">    </span>Perm<span style="color: #f8f8f2"> </span>is<span style="color: #f8f8f2"> </span>a<span style="color: #f8f8f2"> </span>permission<span style="color: #f8f8f2"> </span>mask<span style="color: #f8f8f2"> </span>that<span style="color: #f8f8f2"> </span>can<span style="color: #f8f8f2"> </span>be<span style="color: #f8f8f2"> </span>specified<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">in</span><span style="color: #f8f8f2"> </span>one<span style="color: #f8f8f2"> </span>of<span style="color: #f8f8f2"> </span>the<span style="color: #f8f8f2"> </span>following<span style="color: #f8f8f2"> </span>forms:
 
-        F (full access)
-        M (modify access)
-        RX (read and execute access)
-        R (read-only access)
-        W (write-only access)
-        A comma-separated list in parenthesis of specific rights:
-        D (delete)
-        RC (read control)
-        WDAC (write DAC)
-        WO (write owner)
-        S (synchronize)
-        AS (access system security)
-        MA (maximum allowed)
-        GR (generic read)
-        GW (generic write)
-        GE (generic execute)
-        GA (generic all)
-        RD (read data/list directory)
-        WD (write data/add file)
-        AD (append data/add subdirectory)
-        REA (read extended attributes)
-        WEA (write extended attributes)
-        X (execute/traverse)
-        DC (delete child)
-        RA (read attributes)
-        WA (write attributes)
+<span style="color: #f8f8f2">        </span>A<span style="color: #f8f8f2"> </span>sequence<span style="color: #f8f8f2"> </span>of<span style="color: #f8f8f2"> </span>simple<span style="color: #f8f8f2"> </span>rights:
 
-    Inheritance rights may precede either Perm form, and they are applied only to directories:
+<span style="color: #f8f8f2">        </span>F<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>full<span style="color: #f8f8f2"> </span>access<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>M<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>modify<span style="color: #f8f8f2"> </span>access<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>RX<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span><span style="color: #f8f8f2">read </span>and<span style="color: #f8f8f2"> </span>execute<span style="color: #f8f8f2"> </span>access<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>R<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>read-only<span style="color: #f8f8f2"> </span>access<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>W<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>write-only<span style="color: #f8f8f2"> </span>access<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>A<span style="color: #f8f8f2"> </span>comma-separated<span style="color: #f8f8f2"> </span>list<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">in</span><span style="color: #f8f8f2"> </span>parenthesis<span style="color: #f8f8f2"> </span>of<span style="color: #f8f8f2"> </span>specific<span style="color: #f8f8f2"> </span>rights:
+<span style="color: #f8f8f2">        </span>D<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>delete<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>RC<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span><span style="color: #f8f8f2">read </span>control<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>WDAC<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>write<span style="color: #f8f8f2"> </span>DAC<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>WO<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>write<span style="color: #f8f8f2"> </span>owner<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>S<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>synchronize<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>AS<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>access<span style="color: #f8f8f2"> </span>system<span style="color: #f8f8f2"> </span>security<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>MA<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>maximum<span style="color: #f8f8f2"> </span>allowed<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>GR<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>generic<span style="color: #f8f8f2"> read</span><span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>GW<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>generic<span style="color: #f8f8f2"> </span>write<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>GE<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>generic<span style="color: #f8f8f2"> </span>execute<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>GA<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>generic<span style="color: #f8f8f2"> </span>all<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>RD<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span><span style="color: #f8f8f2">read </span>data/list<span style="color: #f8f8f2"> </span>directory<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>WD<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>write<span style="color: #f8f8f2"> </span>data/add<span style="color: #f8f8f2"> </span>file<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>AD<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>append<span style="color: #f8f8f2"> </span>data/add<span style="color: #f8f8f2"> </span>subdirectory<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>REA<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span><span style="color: #f8f8f2">read </span>extended<span style="color: #f8f8f2"> </span>attributes<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>WEA<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>write<span style="color: #f8f8f2"> </span>extended<span style="color: #f8f8f2"> </span>attributes<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>X<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>execute/traverse<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>DC<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>delete<span style="color: #f8f8f2"> </span>child<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>RA<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span><span style="color: #f8f8f2">read </span>attributes<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">        </span>WA<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>write<span style="color: #f8f8f2"> </span>attributes<span style="color: #f92672">)</span>
 
-    (OI): object inherit
-    (CI): container inherit
-    (IO): inherit only
-    (NP): do not propagate inherit
-</code></pre>
+<span style="color: #f8f8f2">    </span>Inheritance<span style="color: #f8f8f2"> </span>rights<span style="color: #f8f8f2"> </span>may<span style="color: #f8f8f2"> </span>precede<span style="color: #f8f8f2"> </span>either<span style="color: #f8f8f2"> </span>Perm<span style="color: #f8f8f2"> </span>form,<span style="color: #f8f8f2"> </span>and<span style="color: #f8f8f2"> </span>they<span style="color: #f8f8f2"> </span>are<span style="color: #f8f8f2"> </span>applied<span style="color: #f8f8f2"> </span>only<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>directories:
+
+<span style="color: #f8f8f2">    </span><span style="color: #f92672">(</span>OI<span style="color: #f92672">)</span>:<span style="color: #f8f8f2"> </span>object<span style="color: #f8f8f2"> </span>inherit
+<span style="color: #f8f8f2">    </span><span style="color: #f92672">(</span>CI<span style="color: #f92672">)</span>:<span style="color: #f8f8f2"> </span>container<span style="color: #f8f8f2"> </span>inherit
+<span style="color: #f8f8f2">    </span><span style="color: #f92672">(</span>IO<span style="color: #f92672">)</span>:<span style="color: #f8f8f2"> </span>inherit<span style="color: #f8f8f2"> </span>only
+<span style="color: #f8f8f2">    </span><span style="color: #f92672">(</span>NP<span style="color: #f92672">)</span>:<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">do</span><span style="color: #f8f8f2"> </span>not<span style="color: #f8f8f2"> </span>propagate<span style="color: #f8f8f2"> </span>inherit
+</code></pre></div>
 
 
 

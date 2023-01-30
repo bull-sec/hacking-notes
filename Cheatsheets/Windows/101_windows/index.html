@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -961,38 +963,41 @@
 </ul>
 <p>Everything is treated as an object and every object has a set of permissions attached to it. In most cases these are inherited from the parent directory but it is not allways the case and can lead to vulnerabilities we can take advantage of, and sometimes the inheritence itself is the thing we will look to take advantage of.</p>
 <p>Whether a user has permission to perform certain actions on a resource will depend on what Groups that User is a member of and what permissions the User has.</p>
-<pre><code class="language-bash">whoami          # computername\username
-whoami /logonid # Gets the SID for our user
-whoami /priv    # Permissions
-whoami /groups  # Group Membership
-whoami /all     # All the above at once
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>whoami<span style="color: #f8f8f2">          </span><span style="color: #75715e"># computername\username</span>
+whoami<span style="color: #f8f8f2"> </span>/logonid<span style="color: #f8f8f2"> </span><span style="color: #75715e"># Gets the SID for our user</span>
+whoami<span style="color: #f8f8f2"> </span>/priv<span style="color: #f8f8f2">    </span><span style="color: #75715e"># Permissions</span>
+whoami<span style="color: #f8f8f2"> </span>/groups<span style="color: #f8f8f2">  </span><span style="color: #75715e"># Group Membership</span>
+whoami<span style="color: #f8f8f2"> </span>/all<span style="color: #f8f8f2">     </span><span style="color: #75715e"># All the above at once</span>
+</code></pre></div>
+
 <h2 id="acls-aces">ACLs &amp; ACEs</h2>
 <p>Permissions to access resources (<em>Objects</em>) in Windows are controlled by the ACLs or Access Control Lists for that resource.</p>
 <p>Each ACL is made up of zero or more access control entries (ACEs)</p>
 <p>Each ACE define the relationship between a Principal (the name Windows uses for Users and Groups) and a certain access right.</p>
 <p>To view the ACL for a particular Object you can use the GUI to open the Advanced Security Settings menu, or you can run the following command in PowerShell:</p>
-<pre><code class="language-bash">Get-ACL &lt;file&gt;
-</code></pre>
-<pre><code class="language-bash">PS C:\Users\MrBullsec\Documents&gt; Get-Acl .\notes_checklist.md
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>Get-ACL<span style="color: #f8f8f2"> </span>&lt;file&gt;
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>PS<span style="color: #f8f8f2"> </span>C:<span style="color: #ae81ff">\U</span>sers<span style="color: #ae81ff">\M</span>rBullsec<span style="color: #ae81ff">\D</span>ocuments&gt;<span style="color: #f8f8f2"> </span>Get-Acl<span style="color: #f8f8f2"> </span>.<span style="color: #ae81ff">\n</span>otes_checklist.md
 
 
-    Directory: C:\Users\MrBullsec\Documents
+<span style="color: #f8f8f2">    </span>Directory:<span style="color: #f8f8f2"> </span>C:<span style="color: #ae81ff">\U</span>sers<span style="color: #ae81ff">\M</span>rBullsec<span style="color: #ae81ff">\D</span>ocuments
 
 
-Path               Owner         Access
-----               -----         ------
-notes_checklist.md CC1\MrBullsec NT AUTHORITY\SYSTEM Allow  FullControl...
+Path<span style="color: #f8f8f2">               </span>Owner<span style="color: #f8f8f2">         </span>Access
+----<span style="color: #f8f8f2">               </span>-----<span style="color: #f8f8f2">         </span>------
+notes_checklist.md<span style="color: #f8f8f2"> </span>CC1<span style="color: #ae81ff">\M</span>rBullsec<span style="color: #f8f8f2"> </span>NT<span style="color: #f8f8f2"> </span>AUTHORITY<span style="color: #ae81ff">\S</span>YSTEM<span style="color: #f8f8f2"> </span>Allow<span style="color: #f8f8f2">  </span>FullControl...
+</code></pre></div>
 
-</code></pre>
 <p>or the following in CMD.exe:</p>
-<pre><code class="language-bash">icacls &lt;file&gt;
-</code></pre>
-<pre><code class="language-bash">PS C:\Users\MrBullsec\Documents&gt; icacls .\notes_checklist.md
-.\notes_checklist.md NT AUTHORITY\SYSTEM:(I)(F)
-                     BUILTIN\Administrators:(I)(F)
-                     CC1\MrBullsec:(I)(F)
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>icacls<span style="color: #f8f8f2"> </span>&lt;file&gt;
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>PS<span style="color: #f8f8f2"> </span>C:<span style="color: #ae81ff">\U</span>sers<span style="color: #ae81ff">\M</span>rBullsec<span style="color: #ae81ff">\D</span>ocuments&gt;<span style="color: #f8f8f2"> </span>icacls<span style="color: #f8f8f2"> </span>.<span style="color: #ae81ff">\n</span>otes_checklist.md
+.<span style="color: #ae81ff">\n</span>otes_checklist.md<span style="color: #f8f8f2"> </span>NT<span style="color: #f8f8f2"> </span>AUTHORITY<span style="color: #ae81ff">\S</span>YSTEM:<span style="color: #f92672">(</span>I<span style="color: #f92672">)(</span>F<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">                     </span>BUILTIN<span style="color: #ae81ff">\A</span>dministrators:<span style="color: #f92672">(</span>I<span style="color: #f92672">)(</span>F<span style="color: #f92672">)</span>
+<span style="color: #f8f8f2">                     </span>CC1<span style="color: #ae81ff">\M</span>rBullsec:<span style="color: #f92672">(</span>I<span style="color: #f92672">)(</span>F<span style="color: #f92672">)</span>
+</code></pre></div>
 
 
 

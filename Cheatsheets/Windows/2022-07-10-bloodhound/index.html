@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -876,20 +878,22 @@
 </blockquote>
 <h2 id="neo4j-docker">Neo4j Docker</h2>
 <p>Getting Neo4j installed feels like a chore, so we can just make use of a docker image instead:</p>
-<pre><code class="language-bash">docker pull neo4j:latest
-docker run -p 7474:7474 -p 7687:7687 -d --env NEO4J_AUTH=neo4j/test neo4j:latest
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>docker<span style="color: #f8f8f2"> </span>pull<span style="color: #f8f8f2"> </span>neo4j:latest
+docker<span style="color: #f8f8f2"> </span>run<span style="color: #f8f8f2"> </span>-p<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">7474</span>:7474<span style="color: #f8f8f2"> </span>-p<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">7687</span>:7687<span style="color: #f8f8f2"> </span>-d<span style="color: #f8f8f2"> </span>--env<span style="color: #f8f8f2"> NEO4J_AUTH</span><span style="color: #f92672">=</span>neo4j/test<span style="color: #f8f8f2"> </span>neo4j:latest
+</code></pre></div>
+
 <p>We only really need those two ports for BloodHound to be able to communicate with so those two commands will do. If you want a more secure password, change the value of <code>NEO4J_AUTH=neo4j/test</code> to something else.</p>
 <h2 id="installing-bloodhound">Installing BloodHound</h2>
 <p>So I don't actually recommend building this thing, instead I recommend using the Release builds from Github which are kept in line with the <code>master</code> branch of BloodHound.</p>
 <p><a href="https://github.com/BloodHoundAD/BloodHound/releases">BloodHound Github Release Page</a></p>
 <p>Grab the latest one from there, I'm currently using 4.2.0 (#blazeit) but you're likely reading this at some unspecified point in the future, so use whatever is the latest.</p>
 <p>Running it is straightfowards:</p>
-<pre><code class="language-bash"># Assuming you've downloaded the release zip already
-7z x BloodHound-linux-x64.zip
-cd BloodHound-linux-x64/
-./BloodHound --no-sandbox
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Assuming you&#39;ve downloaded the release zip already</span>
+7z<span style="color: #f8f8f2"> </span>x<span style="color: #f8f8f2"> </span>BloodHound-linux-x64.zip
+<span style="color: #f8f8f2">cd </span>BloodHound-linux-x64/
+./BloodHound<span style="color: #f8f8f2"> </span>--no-sandbox
+</code></pre></div>
+
 <h2 id="getting-data">Getting Data</h2>
 <p>BloodHound data doesn't grow on trees, we're going to have to use one of the kindly provided "Collectors" to do that for us.</p>
 <p><img alt="" src="/assets/img/2022-10-08-00-40-10.png" /></p>

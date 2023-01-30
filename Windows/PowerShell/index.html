@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -832,18 +834,19 @@
   <h1>PowerShell</h1>
 
 <h2 id="useful-functions">Useful Functions</h2>
-<pre><code class="language-powershell"># Convert a file to Base64
-[convert]::ToBase64String((Get-Content -path &quot;your_file_path&quot; -Encoding byte))
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Convert a file to Base64</span>
+<span style="color: #66d9ef">[convert]</span><span style="color: #f8f8f2">::ToBase64String((Get-Content</span> <span style="color: #f8f8f2">-path</span> <span style="color: #e6db74">&quot;your_file_path&quot;</span> <span style="color: #f8f8f2">-Encoding</span> <span style="color: #f8f8f2">byte))</span>
+</code></pre></div>
+
 <blockquote>
 <p>The above comes in handy for file extraction because you can just copy the Base64 String to another box and decode then pipe to a file</p>
 </blockquote>
-<pre><code class="language-powershell"># Encode String as Base64
-[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes('Motörhead'))
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e"># Encode String as Base64</span>
+<span style="color: #66d9ef">[Convert]</span><span style="color: #f8f8f2">::ToBase64String(</span><span style="color: #66d9ef">[Text.Encoding]</span><span style="color: #f8f8f2">::UTF8.GetBytes(</span><span style="color: #e6db74">&#39;Motörhead&#39;</span><span style="color: #f8f8f2">))</span>
 
-# Decode from Base64 String
-[Text.Encoding]::Utf8.GetString([Convert]::FromBase64String('TW90w7ZyaGVhZA=='))
-</code></pre>
+<span style="color: #75715e"># Decode from Base64 String</span>
+<span style="color: #66d9ef">[Text.Encoding]</span><span style="color: #f8f8f2">::Utf8.GetString(</span><span style="color: #66d9ef">[Convert]</span><span style="color: #f8f8f2">::FromBase64String(</span><span style="color: #e6db74">&#39;TW90w7ZyaGVhZA==&#39;</span><span style="color: #f8f8f2">))</span>
+</code></pre></div>
 
 
 

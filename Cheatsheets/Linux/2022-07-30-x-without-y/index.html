@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -883,31 +885,33 @@
 <p>Inspired by <a href="https://staaldraad.github.io/2017/12/20/netstat-without-netstat/">Staaldraad's Post on the Matter</a></p>
 <p>Run into situations like this quite often when testing container based systems so thought it was worth starting to compile them all into one document for reference purposes.</p>
 <h2 id="arp-without-arp">ARP without ARP</h2>
-<pre><code class="language-bash">cat /proc/net/arp
-ip neigh
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>cat<span style="color: #f8f8f2"> </span>/proc/net/arp
+ip<span style="color: #f8f8f2"> </span>neigh
+</code></pre></div>
+
 <h2 id="netstat-without-netstat">Netstat without Netstat</h2>
 <p>Staaldraad's AWK script:</p>
-<pre><code class="language-bash">awk'function hextodec(str,ret,n,i,k,c){
-    ret = 0
-    n = length(str)
-    for (i = 1; i &lt;= n; i++) {
-        c = tolower(substr(str, i, 1))
-        k = index(&quot;123456789abcdef&quot;, c)
-        ret = ret * 16 + k
-    }
-    return ret
-}
-function getIP(str,ret){
-    ret=hextodec(substr(str,index(str,&quot;:&quot;)-2,2)); 
-    for (i=5; i&gt;0; i-=2) {
-        ret = ret&quot;.&quot;hextodec(substr(str,i,2))
-    }
-    ret = ret&quot;:&quot;hextodec(substr(str,index(str,&quot;:&quot;)+1,4))
-    return ret
-}
-NR &gt; 1 \{\{if(NR==2)print &quot;Local - Remote&quot;;local=getIP($2);remote=getIP($3)}{print local&quot; - &quot;remote}}' /proc/net/tcp
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>awk<span style="color: #e6db74">&#39;function hextodec(str,ret,n,i,k,c){</span>
+<span style="color: #e6db74">    ret = 0</span>
+<span style="color: #e6db74">    n = length(str)</span>
+<span style="color: #e6db74">    for (i = 1; i &lt;= n; i++) {</span>
+<span style="color: #e6db74">        c = tolower(substr(str, i, 1))</span>
+<span style="color: #e6db74">        k = index(&quot;123456789abcdef&quot;, c)</span>
+<span style="color: #e6db74">        ret = ret * 16 + k</span>
+<span style="color: #e6db74">    }</span>
+<span style="color: #e6db74">    return ret</span>
+<span style="color: #e6db74">}</span>
+<span style="color: #e6db74">function getIP(str,ret){</span>
+<span style="color: #e6db74">    ret=hextodec(substr(str,index(str,&quot;:&quot;)-2,2)); </span>
+<span style="color: #e6db74">    for (i=5; i&gt;0; i-=2) {</span>
+<span style="color: #e6db74">        ret = ret&quot;.&quot;hextodec(substr(str,i,2))</span>
+<span style="color: #e6db74">    }</span>
+<span style="color: #e6db74">    ret = ret&quot;:&quot;hextodec(substr(str,index(str,&quot;:&quot;)+1,4))</span>
+<span style="color: #e6db74">    return ret</span>
+<span style="color: #e6db74">}</span>
+<span style="color: #e6db74">NR &gt; 1 \{\{if(NR==2)print &quot;Local - Remote&quot;;local=getIP($2);remote=getIP($3)}{print local&quot; - &quot;remote}}&#39;</span><span style="color: #f8f8f2"> </span>/proc/net/tcp
+</code></pre></div>
+
 <p>Remove the backslashes before the if statement after <code>NR &gt; 1</code> to get it to work.</p>
 <p>The above presumes <code>awk</code> is installed, if it's not you're SOL.</p>
 <h2 id="ping-without-ping">Ping without Ping</h2>
@@ -917,14 +921,15 @@ NR &gt; 1 \{\{if(NR==2)print &quot;Local - Remote&quot;;local=getIP($2);remote=g
 <li>2) We do have ping but ICMP is blocked</li>
 </ul>
 <p>We can't get around Case #2 but we can get around Case #1.</p>
-<pre><code class="language-bash">telnet ip.ad.dre.ss 80
-nc -znv ip.ad.dre.ss port
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>telnet<span style="color: #f8f8f2"> </span>ip.ad.dre.ss<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">80</span>
+nc<span style="color: #f8f8f2"> </span>-znv<span style="color: #f8f8f2"> </span>ip.ad.dre.ss<span style="color: #f8f8f2"> </span>port
+</code></pre></div>
+
 <h2 id="ls-without-ls">ls without ls</h2>
-<pre><code class="language-bash">echo *
-echo */*
-for i in *; do echo $i; done
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">echo </span>*
+<span style="color: #f8f8f2">echo </span>*/*
+<span style="color: #66d9ef">for</span><span style="color: #f8f8f2"> </span>i<span style="color: #f8f8f2"> </span><span style="color: #66d9ef">in</span><span style="color: #f8f8f2"> </span>*<span style="color: #f8f8f2">; </span><span style="color: #66d9ef">do</span><span style="color: #f8f8f2"> echo $i; </span><span style="color: #66d9ef">done</span>
+</code></pre></div>
 
 
 

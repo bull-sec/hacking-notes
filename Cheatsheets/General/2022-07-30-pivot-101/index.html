@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -966,89 +968,105 @@
 <p>When that happens we need to know the different ways in which we can get around this little hurdle, as there is always a way.</p>
 <p><a href="https://unix.stackexchange.com/questions/293304/using-netcat-for-port-forwarding">The question on StackExchange that spawned this post</a></p>
 <h2 id="socat">SOCAT</h2>
-<pre><code class="language-bash">socat tcp-listen:8001,reuseaddr,fork tcp:localhost:8000
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>socat<span style="color: #f8f8f2"> </span>tcp-listen:8001,reuseaddr,fork<span style="color: #f8f8f2"> </span>tcp:localhost:8000
+</code></pre></div>
+
 <h2 id="python">Python</h2>
 <p>Not something you want to code yourself with any kind of time contraints, but it's totally possible.</p>
 <p>Best choice is to use an existing library like <a href="https://pypi.org/project/sshtunnel/">sshtunnel</a> which you can use to do things like the following (which forwards a Vagrant server to the local MySQL port):</p>
-<pre><code class="language-python">from sshtunnel import open_tunnel
-from time import sleep
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">from</span> <span style="color: #f8f8f2">sshtunnel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">open_tunnel</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">time</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">sleep</span>
 
-with open_tunnel(
-    ('localhost', 2222),
-    ssh_username=&quot;vagrant&quot;,
-    ssh_password=&quot;vagrant&quot;,
-    remote_bind_address=('127.0.0.1', 3306)
-) as server:
+<span style="color: #66d9ef">with</span> <span style="color: #f8f8f2">open_tunnel(</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;localhost&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2222</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #f8f8f2">ssh_username</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;vagrant&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f8f8f2">ssh_password</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;vagrant&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f8f8f2">remote_bind_address</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3306</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">server:</span>
 
-    print(server.local_bind_port)
-    while True:
-        # press Ctrl-C for stopping
-        sleep(1)
+    <span style="color: #f8f8f2">print(server</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">local_bind_port)</span>
+    <span style="color: #66d9ef">while</span> <span style="color: #66d9ef">True</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #75715e"># press Ctrl-C for stopping</span>
+        <span style="color: #f8f8f2">sleep(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
 
-print('FINISH!')
-</code></pre>
+<span style="color: #f8f8f2">print(</span><span style="color: #e6db74">&#39;FINISH!&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
 <h2 id="putty">Putty</h2>
 <p>Basically SSH for Windows. Usually the most interaction we'll have with this is when we find one of it's keys (.ppk) laying around on a machine.</p>
 <p>With that being said...</p>
 <p>Convert Putty key to SSH key:</p>
-<pre><code class="language-bash">puttygen id_dsa.ppk -O private-openssh -o id_dsa
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>puttygen<span style="color: #f8f8f2"> </span>id_dsa.ppk<span style="color: #f8f8f2"> </span>-O<span style="color: #f8f8f2"> </span>private-openssh<span style="color: #f8f8f2"> </span>-o<span style="color: #f8f8f2"> </span>id_dsa
 
-puttygen id_dsa.ppk -O public-openssh -o id_dsa.pub
-</code></pre>
+puttygen<span style="color: #f8f8f2"> </span>id_dsa.ppk<span style="color: #f8f8f2"> </span>-O<span style="color: #f8f8f2"> </span>public-openssh<span style="color: #f8f8f2"> </span>-o<span style="color: #f8f8f2"> </span>id_dsa.pub
+</code></pre></div>
+
 <p>Sometimes Putty also has passwords left in the registry:</p>
 <h2 id="plink">Plink</h2>
 <p>For this to work we need to make sure SSH is turned on. </p>
-<pre><code class="language-bash">service ssh restart
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>service<span style="color: #f8f8f2"> </span>ssh<span style="color: #f8f8f2"> </span>restart
+</code></pre></div>
+
 <p>The on the target machine we can do the following:</p>
-<pre><code class="language-bash">.\plink.exe root@kali_ip -R KALI_PORT:IP_OF_TARGET_MACHINE:TARGET_PORT
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>.<span style="color: #ae81ff">\p</span>link.exe<span style="color: #f8f8f2"> </span>root@kali_ip<span style="color: #f8f8f2"> </span>-R<span style="color: #f8f8f2"> </span>KALI_PORT:IP_OF_TARGET_MACHINE:TARGET_PORT
+</code></pre></div>
+
 <p>(Could come in handy if we have SMB creds for an admin but we can't access SMB remotely)</p>
 <h2 id="metasploit">Metasploit</h2>
 <p>In a <code>meterpreter</code> session:</p>
-<pre><code class="language-bash">portfwd add -l LOCAL_PORT -p DESTINATION_PORT -r TARGET_IP
-</code></pre>
-<pre><code class="language-bash">run autoroute -s 10.1.1.0/24
-run autoroute -s 10.2.2.0/24
-</code></pre>
-<pre><code class="language-bash">use auxiliary/server/socks4a
-set SRVHOST 127.0.0.1
-exploit -j
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>portfwd<span style="color: #f8f8f2"> </span>add<span style="color: #f8f8f2"> </span>-l<span style="color: #f8f8f2"> </span>LOCAL_PORT<span style="color: #f8f8f2"> </span>-p<span style="color: #f8f8f2"> </span>DESTINATION_PORT<span style="color: #f8f8f2"> </span>-r<span style="color: #f8f8f2"> </span>TARGET_IP
+</code></pre></div>
 
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>run<span style="color: #f8f8f2"> </span>autoroute<span style="color: #f8f8f2"> </span>-s<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.1.1.0/24
+run<span style="color: #f8f8f2"> </span>autoroute<span style="color: #f8f8f2"> </span>-s<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.2.2.0/24
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>use<span style="color: #f8f8f2"> </span>auxiliary/server/socks4a
+<span style="color: #f8f8f2">set </span>SRVHOST<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1
+exploit<span style="color: #f8f8f2"> </span>-j
+</code></pre></div>
+
 <p>Now on our host machine we can scan the IT network:</p>
-<pre><code class="language-bash">vim /etc/proxychains.conf 
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>vim<span style="color: #f8f8f2"> </span>/etc/proxychains.conf<span style="color: #f8f8f2"> </span>
 ...
-socks4 127.0.0.1 1080
-</code></pre>
-<pre><code class="language-bash">proxychains nmap -sT -v -Pn 10.2.2.224
-</code></pre>
+socks4<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">1080</span>
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>proxychains<span style="color: #f8f8f2"> </span>nmap<span style="color: #f8f8f2"> </span>-sT<span style="color: #f8f8f2"> </span>-v<span style="color: #f8f8f2"> </span>-Pn<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.2.2.224
+</code></pre></div>
+
 <h2 id="chisel">Chisel</h2>
 <p>Chisel is an awesome tool that is more than capable of turning what feels like a lost cause into a system own.</p>
 <p><a href="https://github.com/jpillora/chisel">Github Link for Chisel</a></p>
 <p>On the host:</p>
-<pre><code class="language-bash">chisel(.exe) client 10.10.14.3:1338 R:1234:127.0.0.1:1234
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>chisel<span style="color: #f92672">(</span>.exe<span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>client<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.10.14.3:1338<span style="color: #f8f8f2"> </span>R:1234:127.0.0.1:1234
+</code></pre></div>
+
 <p>That will setup a connection to 1337, which will then forward port 1234 to localhost:</p>
-<pre><code class="language-bash">chisel(.exe) server -p 1337 -reverse -v
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>chisel<span style="color: #f92672">(</span>.exe<span style="color: #f92672">)</span><span style="color: #f8f8f2"> </span>server<span style="color: #f8f8f2"> </span>-p<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">1337</span><span style="color: #f8f8f2"> </span>-reverse<span style="color: #f8f8f2"> </span>-v
+</code></pre></div>
+
 <h2 id="ssh">SSH</h2>
 <p>Local Foward:</p>
-<pre><code class="language-bash">ssh -L 80:127.0.0.1:80 someserver@someip
-</code></pre>
-<h3 id="remote-forward">Remote Forward</h3>
-<pre><code class="language-bash">ssh -R 8080:localhost:80 someserver@someip
-</code></pre>
-<h3 id="dynamic-tunneling">Dynamic tunneling</h3>
-<pre><code class="language-bash">ssh -D 9000 sean@10.11.1.251
-</code></pre>
-<pre><code class="language-bash">vim /etc/proxychains.conf 
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>ssh<span style="color: #f8f8f2"> </span>-L<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">80</span>:127.0.0.1:80<span style="color: #f8f8f2"> </span>someserver@someip
+</code></pre></div>
 
-socks4 127.0.0.1 1080
-</code></pre>
-<pre><code class="language-bash">proxychains nmap -sT -v -Pn 10.2.2.224
-</code></pre>
+<h3 id="remote-forward">Remote Forward</h3>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>ssh<span style="color: #f8f8f2"> </span>-R<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">8080</span>:localhost:80<span style="color: #f8f8f2"> </span>someserver@someip
+</code></pre></div>
+
+<h3 id="dynamic-tunneling">Dynamic tunneling</h3>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>ssh<span style="color: #f8f8f2"> </span>-D<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">9000</span><span style="color: #f8f8f2"> </span>sean@10.11.1.251
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>vim<span style="color: #f8f8f2"> </span>/etc/proxychains.conf<span style="color: #f8f8f2"> </span>
+
+socks4<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">127</span>.0.0.1<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">1080</span>
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>proxychains<span style="color: #f8f8f2"> </span>nmap<span style="color: #f8f8f2"> </span>-sT<span style="color: #f8f8f2"> </span>-v<span style="color: #f8f8f2"> </span>-Pn<span style="color: #f8f8f2"> </span><span style="color: #ae81ff">10</span>.2.2.224
+</code></pre></div>
+
 <p>This creates a dynamic tunnel over port 9000 using SOCKS(4a)</p>
 
 

